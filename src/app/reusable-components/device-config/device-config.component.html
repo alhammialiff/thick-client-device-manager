@@ -1,0 +1,179 @@
+<!-- <ng-container *ngIf="notification">
+  <app-toast-message [notification]="notification"></app-toast-message>
+</ng-container> -->
+
+<div class="device-config-form">
+
+  <mat-tab-group [disableRipple]="false" color="accent">
+    <form class="form-flex" [formGroup]="deviceConfigForm">
+      <mat-tab>
+
+        <ng-template mat-tab-label>
+          <span class="tab-label">Device Configuration</span>
+        </ng-template>
+
+        <div class="form-flex">
+          <h3>Device Configuration</h3>
+        </div>
+
+
+          <div class="form-grid">
+
+            <div>
+              <label>Device ID:</label>
+            </div>
+
+            <div>
+              <label>{{deviceData.id}}</label>
+            </div>
+
+            <div>
+              <label>Device Name:</label>
+            </div>
+
+            <div>
+              <input formControlName="deviceName"
+                type="text"
+                placeholder="{{deviceData.deviceName}}"
+                data-testid="device-config-name-field">
+            </div>
+
+            <div>
+              <label>Device IP:</label>
+            </div>
+
+            <div>
+              <input class="ip-octet-field"
+                formControlName="deviceIP_o1"
+                type="text"
+                maxlength="3"
+                placeholder="{{ipFirstOctet}}"
+                (click)="selectAllExistingText($event)"
+                data-testid="device-config-ip-1-field"> .
+              <input class="ip-octet-field"
+                formControlName="deviceIP_o2"
+                type="text"
+                maxlength="3"
+                placeholder="{{ipSecondOctet}}"
+                (click)="selectAllExistingText($event)"
+                data-testid="device-config-ip-2-field"> .
+              <input class="ip-octet-field"
+                formControlName="deviceIP_o3"
+                type="text"
+                maxlength="3"
+                placeholder="{{ipThirdOctet}}"
+                (click)="selectAllExistingText($event)"
+                data-testid="device-config-ip-3-field"> .
+              <input class="ip-octet-field"
+                formControlName="deviceIP_o4"
+                type="text"
+                maxlength="3"
+                placeholder="{{ipFourthOctet}}"
+                (click)="selectAllExistingText($event)"
+                data-testid="device-config-ip-4-field">
+
+              <div *ngIf="deviceIP_o1.errors?.['required']
+                || deviceIP_o2.errors?.['required']
+                || deviceIP_o3.errors?.['required']
+                || deviceIP_o4.errors?.['required']"
+                class="form-validation-error">
+                IP Address is not completely filled
+              </div>
+              <div *ngIf="deviceIP_o1.errors?.['pattern']
+                || deviceIP_o2.errors?.['pattern']
+                || deviceIP_o3.errors?.['pattern']
+                || deviceIP_o4.errors?.['pattern']"
+                class="form-validation-error">
+                IP Address should only be numbers
+              </div>
+
+              <input id="ip-address" formControlName="hostIP" type="hidden">
+
+            </div>
+
+            <div>
+              <label>Refresh Rate:</label>
+            </div>
+
+            <div>
+              <select>
+                <option value="10">10s</option>
+                <option value="20">20s</option>
+                <option value="30">30s</option>
+                <option value="40">40s</option>
+                <option value="50">50s</option>
+                <option value="60">60s</option>
+              </select>
+            </div>
+            <br>
+
+          </div>
+
+
+        <div class="form-flex">
+          <button
+          [class.disabled-button]="!deviceConfigForm.valid"
+          (click)="saveUpdatedConfig()"
+          [disabled]="!deviceConfigForm.valid"
+          data-testid="device-config-save-btn">Save</button>
+          <button (click)="closeConfigPage()" data-testid="device-config-cancel-btn">Cancel</button>
+          <button (click)="deleteDevice()" class="delete-device-button"  data-testid="device-config-delete-btn">Delete Device</button>
+        </div>
+      </mat-tab>
+
+      <mat-tab>
+
+        <ng-template mat-tab-label>
+          <span class="tab-label">WDP Credentials</span>
+        </ng-template>
+
+        <div class="form-flex">
+          <h3>Windows Device Portal Credentials</h3>
+        </div>
+
+        <!-- <form class="form-flex" [formGroup]="wdpCredentialsForm"> -->
+
+          <div class="form-grid">
+
+            <div>
+              <label>Username</label>
+            </div>
+
+            <div>
+              <input formControlName="username"
+                type="text"
+                placeholder="Username"
+                data-testid="wdp-credentials-config-username-field">
+            </div>
+
+            <div>
+              <label>Password</label>
+            </div>
+
+            <div>
+              <input formControlName="password"
+                type="password"
+                placeholder="Password"
+                data-testid="wdp-credentials-password-field">
+            </div>
+            <br>
+
+          </div>
+
+        <!-- </form> -->
+
+        <div class="form-flex">
+          <button
+          [class.disabled-button]="!deviceConfigForm.valid"
+          (click)="saveUpdatedConfig()"
+          [disabled]="!deviceConfigForm.valid"
+          data-testid="wdp-credentials-save-btn">Save</button>
+          <button (click)="closeConfigPage()" data-testid="device-config-cancel-btn">Cancel</button>
+          <button (click)="deleteDevice()" class="delete-device-button"  data-testid="device-config-delete-btn">Delete Device</button>
+        </div>
+      </mat-tab>
+    </form>
+
+  </mat-tab-group>
+
+</div>

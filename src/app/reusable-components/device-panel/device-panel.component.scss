@@ -1,0 +1,386 @@
+*{
+    // margin: auto;
+    max-height: 400px !important;
+}
+
+
+.destroyedPanel{
+
+  height: 0 !important;
+
+
+}
+
+@media (max-width:1125px) {
+
+    mat-card{
+        height: 300px;
+    }
+
+}
+
+@media (max-width:1000px) {
+
+    mat-card{
+        height: 400px;
+    }
+
+}
+
+mat-card{
+
+    position: relative;
+    height: 260px;
+    border-radius: 12px !important;
+    padding: auto;
+    margin-bottom: 10px;
+    // box-shadow: 1px 1px 4px rgb(206, 206, 206);
+    box-shadow: -2px -2px 2px white,
+               2px 2px 3px rgb(208, 208, 208);
+    background-position: top right;
+    background-size: 130px 120px;
+    background-repeat: no-repeat;
+
+}
+
+.devicePanel{
+
+  background-image: url('/assets/images/hololens-logo-grey.png');
+
+}
+
+mat-card:hover{
+
+    height: 260px;
+    background-color: #dfdfdf;
+
+}
+
+#power-status{
+
+  display: flex;
+  align-items: center;
+
+}
+
+.device-image, .device-status{
+
+  text-align: center;
+
+}
+
+.device-status-row{
+  display: flex;
+  padding: 10px 20px;
+  // border-top: 3px solid white;
+  // border-left: 3px solid white;
+  box-shadow: -2px -2px 2px white,
+               2px 2px 3px rgb(208, 208, 208);
+  // border: black solid 1px;
+  border-radius: 8px;
+  justify-content: space-between;
+  background-color: #ebebeb;
+}
+
+.device-info-header{
+
+  font-size: 1.5rem;
+
+}
+
+.buryDevicePanel{
+
+  // Update 08/01: z-index -9999 conceals device panel below page (too deep)
+  z-index: 9 !important;
+  position:relative;
+  top: -270px;
+
+}
+
+.hideOverlayCard{
+
+  z-index: -9999 !important;
+  display: none;
+
+}
+
+.showOverlayCard{
+
+  z-index: 10 !important;
+  position: relative;
+
+}
+
+#detailsButtonIconAndText{
+
+  display: flex;
+  flex-direction: column;
+
+  span{
+
+    margin: -2px;
+    font-size: 1.1rem;
+
+  }
+
+}
+
+#settingsButtonIconAndText{
+
+  display: flex;
+  flex-direction: column;
+
+  span{
+
+    margin: -9px;
+    font-size: 1rem;
+
+  }
+
+}
+
+
+.popUpDevicePanel, .popUpDevicePanel:hover{
+
+  // display: none;
+  // position: absolute;
+  // z-index: ;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease-in;
+  background-color: rgba(255,255,255,0.5) !important;
+  backdrop-filter: blur(0.8px);
+  // backdrop-filter: contrast(80%);
+  // opacity: 0.8 !important;
+
+
+  button{
+
+    cursor: pointer;
+    // opacity: 1 !important;
+    padding: 10px;
+    font-family: "roboto-regular" !important;
+    font-weight: 800;
+    background-color: rgb(214, 214, 214);
+    border: none;
+    border-radius: 5px;
+    margin: 2px;
+
+  }
+
+  button:hover{
+
+    background-color: rgba(230, 230, 230);
+    // opacity: 1 !important;
+    transition: background-color ease-in 0.2s;
+
+  }
+
+}
+
+.overlayPanelContainer{
+
+  display: flex;
+  flex-direction: row;
+
+}
+
+.overlayButtons{
+
+  // box-shadow: 0px 2px 6px rgb(140, 55, 55);
+  box-shadow: -2px -2px 2px white,
+               2px 2px 3px rgb(208, 208, 208);
+  width: 100px;
+  height: 45px;
+  // align-content: start;
+  // background-color: rgb(192, 6, 6)!important;
+  background-color: #454545 !important;
+  color: rgb(242, 242, 242);
+
+  *{
+
+    font-size:1rem;
+
+  }
+
+  mat-icon{
+
+    margin-bottom: 5px;
+
+  }
+
+
+
+}
+
+.overlayButtons:hover{
+
+  background-color: rgb(156, 14, 14)!important;
+
+  *{
+    // font-size:1.6rem;
+    transition: 0.25s ease-in-out font-size;
+  }
+
+}
+
+#detailsButton{
+
+  padding: 5px;
+  justify-content: center;
+
+  #settingsButton{
+
+    align-items: center;
+
+  }
+
+}
+
+#settingsIcon{
+
+  margin-bottom: 5px;
+
+}
+
+
+.onlineIcon{
+
+  display: inline-flex;
+  background-color: green;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  filter: blur(0.6px);
+
+}
+
+.sleepIcon{
+
+  display: inline-flex;
+  // background-color: rgb(170, 202, 221);
+  // width: 40px;
+  // height: 40px;
+  font-size: 2.5rem;
+  color:rgb(170,202,221);
+  border-radius: 50%;
+  // filter: blur(0.8px);
+
+}
+
+.offlineIcon{
+
+  display: inline-flex;
+  background-color: rgb(180, 180, 180);
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  filter: blur(0.6px);
+
+}
+
+#last-updated{
+
+  color: #454545;
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: start;
+
+}
+
+.status-info-text{
+
+  display:inline-flex;
+  justify-items: center;
+  font-size: 1.5rem;
+  line-height: 50px;
+
+}
+
+#sleepIcon{
+
+  color: rgb(170,202,221);
+  font-size: 2.9rem;
+
+}
+
+// ==================
+// ICONS
+// ==================
+mat-icon{
+
+  font-size: 1.6rem;
+  height: auto;
+}
+
+.material-symbols-outlined{
+
+  padding: 0px;
+  vertical-align: -6px;
+
+}
+
+
+.editDevicePanel:hover{
+
+  display: block;
+  z-index: 9999;
+
+}
+
+
+::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+    stroke: #000000 !important;
+    background-color: #000000;
+}
+
+.flashUpdateBackground{
+
+    background-color: rgb(224, 239, 255);
+    transition: background-color 0.1s ease;
+}
+
+.hideUpdateBackground{
+
+    background-color:#f0f0f3;
+    transition: background-color 1s ease;
+
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    25%{
+        opacity: 0.25
+    }
+    50%{
+        opacity: 0.5;
+    }
+    75%{
+        opacity: 0.75
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    25%{
+        opacity: 0.75
+    }
+    50%{
+        opacity: 0.5;
+    }
+    75%{
+        opacity: 0.25
+    }
+    100%{
+        opacity: 0;
+    }
+}
+
+

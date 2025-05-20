@@ -1,0 +1,35 @@
+<div class="page-container">
+
+  <div class="container-header">
+    <h3>Settings</h3>
+  </div>
+
+  <div class="settings-container">
+
+    <div class="settings-menu">
+
+      <div routerLink="general">
+        <span>General</span>
+      </div>
+      <div routerLink="network">
+        <span>Network</span>
+      </div>
+      <div routerLink="session">
+        <span>Session</span>
+      </div>
+
+      <!-- Uncomment if a use for Storage section is found -->
+      <!-- <div routerLink="storage">
+        <span>Storage</span>
+      </div> -->
+
+    </div>
+
+    <div class="settings-content">
+      <!-- Outlet to sub-settings -->
+      <router-outlet></router-outlet>
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,23 @@
+.container{
+  display: flex;
+  height: 10vh;
+  margin-top: 5vh;
+  background-color: rgb(255, 255, 255);
+  justify-content: center;
+
+}
+
+.image-container{
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  span{
+
+    font-size: 0.8rem;
+
+  }
+
+}
+

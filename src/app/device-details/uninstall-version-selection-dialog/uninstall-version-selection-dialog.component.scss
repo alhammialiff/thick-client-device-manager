@@ -1,0 +1,87 @@
+.dialog-container{
+
+  // margin: 20px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+
+}
+
+input[type=password]{
+
+  height: 35px;
+  border-top: 1px solid #dfdfdf;
+  border-right: 1px solid #dfdfdf;
+  border-left: 1px solid #dfdfdf;
+  border-bottom: 1px solid #dfdfdf;
+  border-radius: 5px;
+  font-size:1.2rem;
+
+}
+
+mat-icon{
+
+  color:rgb(62, 62, 62);
+
+
+}
+
+button{
+
+  cursor: pointer;
+  padding: 10px;
+  font-family: "roboto-regular" !important;
+  background-color: #d4d4d4;
+  border: none;
+  border-radius: 5px;
+  margin: 5px;
+
+}
+
+#ok-button{
+
+  background-color: rgb(189, 2, 2);
+  color: white;
+
+}
+
+#ok-button:hover{
+
+  background-color: rgb(160, 4, 4);
+
+}
+
+button:hover{
+
+  background-color: #c7c6c6;
+  transition: background-color ease-in 0.2s;
+
+}
+
+.dialog-message-content{
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+
+  ol li{
+
+    text-align: start;
+
+  }
+
+}
+
+.dialog-button{
+  display: flex;
+  justify-content: center;
+}
+
+.versionDropdown{
+
+  padding: 5px;
+  border-radius: 6px;
+
+}
+

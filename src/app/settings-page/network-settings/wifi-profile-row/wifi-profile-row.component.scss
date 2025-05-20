@@ -1,0 +1,60 @@
+
+.wifi-profile{
+
+  display: flex;
+  max-width: 800px;
+  padding: 10px;
+  background-color: #dfdfdf;
+  border: 1px solid #dfdfdf;
+  border-radius: 6px;
+  margin-bottom: 5px;
+  font-family: roboto-regular;
+  font-size: 1.1rem;
+
+  .wifi-name{
+
+    margin-top:10px;
+
+  }
+
+  mat-icon{
+
+    font-size: 1.3rem;
+    margin-top:10px;
+    color: rgb(158, 202, 255);
+
+  }
+
+  .close-button{
+    // display: flex;
+    margin-left:auto;
+
+  }
+
+}
+
+.wifi-profile:hover{
+
+  background-color: rgb(161, 0, 0);
+  transition: background-color 0.25s ease-in;
+  color: white;
+
+  mat-icon{
+
+    font-size: 1.3rem;
+    color: rgb(158, 202, 255);
+
+  }
+
+  .close-button{
+
+    cursor: pointer;
+
+    mat-icon{
+      color: rgb(255, 138, 138);
+
+    }
+    // text-align: end;
+  }
+
+}

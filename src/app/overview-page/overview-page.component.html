@@ -1,0 +1,309 @@
+
+<div class="overview-container">
+
+  <div class="top-content">
+
+    <!-- Overview Section -->
+    <div class="overview-section">
+
+        <div class="header-alignment">
+            <h2>Overview</h2>
+        </div>
+
+        <div class="inventory-snapshot">
+
+          <div class="info-snapshot-box">
+            <p><strong>HoloLens</strong></p>
+            <p id="hololens-online-percentage"><span class="info-numerator">{{numOfHololensOnline}}</span>/{{devicesToRegister.length}} <span class="descriptive-text">online</span></p>
+          </div>
+
+          <div class="info-snapshot-box">
+            <p><strong>Battery Low</strong></p>
+            <p id="battery-low-percentage"><span class="info-numerator">{{numOfHololensBattLow}}</span>/{{devicesToRegister.length}} <span class="descriptive-text">critical</span></p>
+          </div>
+
+        </div>
+
+    </div>
+
+    <!-- Activity/Devices Status Log Section -->
+    <div class="activity-log">
+
+      <mat-tab-group [disableRipple]="false" color="accent">
+
+          <!-- Devices Status Tab -->
+          <mat-tab>
+
+            <ng-template mat-tab-label>
+              <span class="activity-log-tab-label">Device Status</span>
+            </ng-template>
+
+            <table #activityLogTable class="activity-log-table">
+
+              <tr>
+                <th>Device Name</th>
+                <th>IP</th>
+                <th>Status</th>
+                <!-- <th>Type</th> -->
+              </tr>
+
+              <ng-container *ngFor="let device of hololensPowerStatusData; trackBy:trackDeviceListByName">
+                <tr #activityLogRow>
+                  <td>{{device.deviceName}}</td>
+                  <td>{{device.hostIP}}</td>
+                  <td>
+
+                    <ng-container *ngIf="device.isOnline && device.lowPowerState; else onlineIcon;">
+                      <!-- <span [class.sleepIcon]="device.isOnline && device.lowPowerState"></span> -->
+                      <span id="sleepIcon" class="material-icons material-symbols-outlined" [class.sleepIcon]="device.isOnline && device.lowPowerState">
+                        bedtime
+                      </span>
+                    </ng-container>
+
+                    <ng-template #onlineIcon>
+                      <span [class.onlineIcon]="device.isOnline"></span>
+                    </ng-template>
+
+                    <span [class.offlineIcon]="!(device.isOnline)"></span>
+
+                  </td>
+                </tr>
+              </ng-container>
+
+            </table>
+          </mat-tab>
+
+          <!-- Activity Table -->
+          <mat-tab>
+
+            <ng-template mat-tab-label>
+              <span class="activity-log-tab-label">Activity</span>
+            </ng-template>
+
+            <table #activityLogTable class="activity-log-table">
+
+              <tr>
+                <th>Time</th>
+                <th>Device</th>
+                <th>Task</th>
+              </tr>
+
+              <ng-container *ngFor="let log of masterActivityLog">
+                <tr #activityLogRow>
+                  <td>{{ log.loggedTime }}</td>
+                  <td>{{ log.hasOwnProperty('deviceName')? log.deviceName: '' }} ({{ log.hostIP }})</td>
+                  <td>{{ log.task }}</td>
+                </tr>
+              </ng-container>
+
+            </table>
+          </mat-tab>
+      </mat-tab-group>
+
+    </div>
+
+  </div>
+
+  <br />
+  <mat-divider></mat-divider>
+
+  <!-- HoloLens Fleet Section -->
+  <div class="bottom-content">
+
+      <div class="header-alignment">
+
+        <div class="header-title">
+          <h2>HoloLens Fleet</h2>
+        </div>
+
+        <div class="header-view-filter-buttons">
+
+          <a class="header-onboard-hololens-button"
+            (click)="displayPopUpRegistrationPanel()">
+            <span><strong>[ + ] Onboard HoloLens</strong></span>
+          </a>
+
+          <!-- isListView: {{isListView}} -->
+          <!-- isPanelView: {{isPanelView}} -->
+          <span class="header-view-filter-text">
+            Filter by
+          </span>
+
+          <a (click)="toggleAlphaSort()">
+            <span class="material-symbols-outlined header-view-and-filter-buttons">sort_by_alpha</span>
+          </a>
+
+          <!-- <a (click)="sortByDescendingAlpha()">
+            <mat-icon>help</mat-icon>
+          </a> -->
+
+          <a (click)="sortByOnlineStatus()">
+            <!-- <mat-icon><span class="material-symbols-outlined">power</span></mat-icon> -->
+            <span class="material-symbols-outlined header-view-and-filter-buttons material-icons-offset">power</span>
+
+          </a>
+
+          <span class="vert-divider"></span>
+
+          <span class="header-view-filter-text">
+            View by
+          </span>
+
+          <a [class.active-view-button]="isListView"
+            (click)="switchToListView()">
+            <!-- <mat-icon><span class="material-symbols-outlined">view_list</span></mat-icon> -->
+            <span class="material-symbols-outlined header-view-and-filter-buttons">view_list</span>
+
+          </a>
+
+          <a [class.active-view-button]="isPanelView"
+            (click)="switchToPanelView()">
+            <!-- <mat-icon><span class="material-symbols-outlined">view_module</span></mat-icon> -->
+            <span class="material-symbols-outlined header-view-and-filter-buttons">view_module</span>
+          </a>
+
+        </div>
+
+      </div>
+
+      <!-- Device Panel Section -->
+      <!-- [hidden] props does not work here (tested) - used condition class instead -->
+      <div [class.hide-device-panel-section]="isListView"
+        class="device-panel">
+
+          <!-- Dynamic Injection: Device Panel -->
+          <ng-container insertDevicePanel>
+          </ng-container>
+
+
+          <div data-testid="onboard-hololens-panel-btn">
+
+            <!-- Register Device button - Add Device Segment-->
+            <!-- [COMMENTED] No need for a duplicate Onboard HoloLens function -->
+            <!-- <mat-card class="register-hl-card-btn"
+              *ngIf="!registrationPanelDisplayed"
+              (click)="displayRegistrationPanel()">
+                <mat-card-header>
+                    <p id="add-button">+</p>
+                    <p><strong>Onboard HoloLens</strong></p>
+                </mat-card-header>
+                <mat-card-content>
+                </mat-card-content>
+            </mat-card> -->
+
+            <!-- Register Device - Device Form segment -->
+            <mat-card *ngIf="registrationPanelDisplayed"
+              class="register-hl-form-card">
+
+                <!-- Device Registration Form -->
+                <div [hidden]="showLoading">
+                    <mat-card-header>
+                        <p><strong>Register a Hololens</strong></p>
+                    </mat-card-header>
+                    <mat-divider></mat-divider>
+                    <mat-card-content>
+                        <form id="registration-form" [formGroup]="hlRegistrationForm"><br />
+
+                            <!-- IP Field-->
+                            <div class="registration-form-field">
+                              <div>
+                                IP Address
+                              </div>
+                              <div>
+                                <input type="text"
+                                  formControlName="hlHostAddress"
+                                  data-testid="registration-form-device-ip" />
+                              </div>
+                            </div>
+
+                            <!-- Device Name Field-->
+                            <div class="registration-form-field">
+                              <div>
+                                Device Name
+                              </div>
+                              <div>
+                                <input type="text"
+                                  formControlName="hlDeviceName"
+                                  data-testid="registration-form-device-name" />
+                              </div>
+                            </div>
+
+                            <!-- Buttons -->
+                            <div class="registration-form-field">
+                              <button (click)="onSubmitRegistration()" data-testid="registration-form-device-submit-btn">Onboard</button> &nbsp;
+                              <button (click)="cancelRegistration()"  data-testid="registration-form-device-cancel-btn">Cancel</button>
+                            </div>
+
+                        </form>
+                    </mat-card-content>
+                </div>
+
+                <!-- Loading Spinner Container-->
+                <div *ngIf="showLoading" class="registration-loading">
+                  <div class="loading-spinner-section">
+
+                    <!-- Angular Material Loading Spinner -->
+                    <!-- <mat-spinner
+                      mode="indeterminate"
+                      class="loading-spinner">
+                    </mat-spinner> -->
+
+                    <!-- Custom Loading -->
+                    <svg class="ring"
+                      viewBox="25 25 50 50"
+                      stroke-width="5">
+                      <circle cx="50" cy="50" r="20" />
+                    </svg>
+
+                    <span><strong>Registering</strong></span>
+                  </div>
+                </div>
+            </mat-card>
+
+          </div>
+      </div>
+
+      <br />
+
+      <!-- Custom table -->
+      <!-- Add List view here -->
+        <!-- To render each device in rows - -->
+        <!-- This way we achieve standardisation in rendering dynamic component (same way like Device Panel) -->
+      <div [hidden]="isPanelView" class="device-list-table">
+
+        <div class="device-table-header">
+            <div class="dt-col">No.</div>
+            <div class="dt-col">HoloLens</div>
+            <div class="dt-col">IP</div>
+            <div class="dt-col">Status</div>
+            <div class="dt-col">Battery</div>
+            <div class="dt-col">Last Update</div>
+            <div class="dt-col">...</div>
+
+        </div>
+
+        <!-- Dynamic Injection: Device Row -->
+        <ng-container insertDeviceRow></ng-container>
+
+      </div>
+
+  </div>
+  <br />
+
+  <div *ngIf="registrationSuccessful; else failureNotification">
+      <span class="success-notification">{{notification}}</span>
+  </div>
+
+  <ng-template #failureNotification>
+      <span class="failure-notification">{{notification}}</span>
+  </ng-template>
+
+  <mat-divider></mat-divider>
+
+  <!-- Device Details Component here -->
+  <div id="device-details">
+    <!-- <router-outlet (activate)="onActivate($event)"></router-outlet> -->
+    <router-outlet></router-outlet>
+  </div>
+
+</div>

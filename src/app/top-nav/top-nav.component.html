@@ -1,0 +1,37 @@
+<!-- <div *ngIf="showToast" [class.toast-popup-show]="showToast">
+  <div class="toast-popup-show">
+    <div class="toast-column">
+      <mat-icon>info</mat-icon>
+    </div>
+    <div class="toast-column">
+      <p>{{notification}}</p>
+    </div>
+</div> -->
+
+<mat-toolbar>
+  <div class="container">
+
+    <div class="row">
+      <div class="col spinning-ring-left spinning-ring-left-start">
+        <img src="/assets/images/brand-logo.png">
+      </div>
+    </div>
+
+    <!-- <div>
+      <button (click)="testClick()">
+        Show Toast
+      </button>
+    </div> -->
+
+    <!-- <div class="row">
+      <div class="col">
+        <p class="py-0 logo-text">holo.hub</p>
+      </div>
+    </div> -->
+  </div>
+
+</mat-toolbar>
+
+<!-- Toast Message -->
+<ng-container insertToastMessage>
+</ng-container>

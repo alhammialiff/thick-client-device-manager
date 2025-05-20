@@ -1,0 +1,513 @@
+*{
+  margin: 0;
+  // border: red 1px solid;
+}
+
+.content-container{
+  margin: 10px;
+  display: grid;
+  max-width: 100vw;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+      "a"
+      "b"
+      "c";
+}
+
+.mat-drawer-content{
+
+  background-color: #F0F0F3 !important;
+
+}
+
+
+.side-nav{
+
+  position: fixed;
+
+  // =============
+  // Use 'top' prop to bring Sidenav Component out from under Topnav
+  // =============
+  top: 82px;
+  width: 80px !important;
+  z-index: 999;
+  border: none;
+  padding: 2px;
+  background-color: #424242;
+  text-align: center;
+  color: #cfcfcf;
+  box-shadow: 2px 0px 6px rgb(108, 99, 161);
+
+  .icon-panel{
+
+    height: 70px;
+    border: 1px solid #ddd8b8;
+    box-shadow: 1px 1px #efebd4;
+    border-radius: 12px;
+    margin-bottom: 1px;
+    cursor: pointer;
+
+    .mat-icon{
+      padding: 10px 0 5px 0;
+      transform: scale(1.1);
+    }
+
+    .icon-title{
+      font-size: 0.75rem;
+      margin: 0;
+      padding: 0;
+
+    }
+
+  }
+
+  .icon-panel:hover{
+
+    background-color:rgb(156, 7, 7);
+    transition: background-color 0.5s ease;
+    // transition: transform 2s ease-in;
+
+    .mat-icon, span{
+
+      transform: scale(1.4);
+      // color:rgb(231, 175, 175);
+      color:white;
+      text-shadow: 0px 2px 6px #444444;
+      transition: transform 0.2s ease-in;
+      // transition: color 0.6s ease-in;
+      // transition: text-shadow 0.2s ease-in;
+
+    }
+
+
+
+  }
+
+}
+
+.top-content{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "a b";
+
+}
+
+.loading{
+    margin: auto;
+}
+
+.mat-spinner{
+    stroke:#272727!important;
+}
+
+// h3{
+//     color: #0e418f;
+// }
+
+.inventory-snapshot{
+    // background-color: yellow;
+    margin: 10px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "a b";
+    font-size: 0.9rem;
+
+}
+
+.device-panel{
+
+    display: grid;
+    max-width: 100vw;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas: "a b c d";
+    column-gap: 20px;
+
+}
+
+.header-alignment{
+  margin: 10px;
+}
+
+.keyValue{
+    span{
+        color:#272727;
+    }
+}
+
+mat-card{
+
+    img, p{
+        margin: auto;
+    }
+
+    mat-card-header > p{
+        font-size: 1.2rem;
+    }
+
+    #add-button{
+        font-size: 150px;
+    }
+
+    mat-card-content{
+        text-align: center;
+    }
+
+}
+
+mat-form-field{
+    width: 40vw;
+}
+
+// Buttons
+input[type=file]{
+    width: 40vw;
+    border-bottom: 1px solid #dfdfdf;
+}
+
+input[type=text]{
+    height: 20px;
+    border-top: 1px solid #dfdfdf;
+    border-right: 1px solid #dfdfdf;
+    border-left: 1px solid #dfdfdf;
+    border-bottom: 1px solid #dfdfdf;
+    border-radius: 5px;
+}
+
+button,
+input::file-selector-button{
+    padding: 10px;
+    font-family: "roboto-regular" !important;
+    background-color: #dfdfdf;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover,input::file-selector-button:hover{
+    padding: 10px;
+    font-family: "roboto-regular" !important;
+    background-color: #c7c6c6;
+    border: none;
+    border-radius: 5px;
+}
+
+.uploadSection{
+    display: flex;
+
+}
+
+.onlineIcon{
+    display: inline-flex;
+    background-color: green;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.register-hl-card-btn{
+
+  border: 1px dashed #c6c3ae !important;
+
+}
+
+.register-hl-card-btn:hover{
+  // border: 1px dashed black !important;
+  background-color: #dfdfdf;
+}
+
+.activity-log-table{
+
+  display: block;
+  margin: 10px;
+  max-width: 40vw;
+  height: 200px;
+  border-radius: 5px;
+  border: #dfdfdf 1px solid;
+  overflow-x: auto;
+  font-family: roboto-regular;
+  font-size: 0.85rem;
+
+  th{
+
+    width: 40vw;
+    position: sticky;
+    top: 0;
+    background-color: #dddacc;
+    color: #161616;
+
+  }
+
+  td{
+
+    border: 0.1px solid #f6f6f6;
+
+  }
+
+}
+
+.errorCol{
+
+  text-align: center;
+  background: rgb(255, 209, 209);
+  font-size: 0.85rem;
+
+}
+
+.okCol{
+
+  text-align: center;
+  background: rgb(221, 237, 255);
+  font-size: 0.85rem;
+
+}
+
+// Custom scrollbar specs
+::-webkit-scrollbar{
+  width: 20px;
+}
+
+::-webkit-scrollbar-track{
+  background: white;
+}
+
+::-webkit-scrollbar-thumb{
+  background: #e5e5e5;
+  border-radius: 5px;
+}
+
+.splash-screen-container{
+
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  // border: 1px solid red;
+
+
+}
+
+.splash-screen-image-row{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  // border: 1px solid black;
+
+}
+
+// [WORKING SPLASH ANIMATION v1]===================
+// An 'if-it-works-its-not-stupid' way of making S249 Ring and S249 Text animate
+// by making both spin opposite direction so that S249 Text will appear stationary
+// The idea is to 'gimbalise' the Text when the Ring is spinning. Without it, the Text spins
+// with the ring as the Text is nested in the Ring in DOM
+// =================================================================================
+// .spinning-ring{
+//   width: 110px;
+//   height: 110px;
+//   display:flex;
+//   border: 3px solid;
+//   padding: 20px;
+//   border-color: transparent black transparent black;
+//   border-radius: 50%;
+//   transform: rotate(61deg);
+//   animation: rotate-spinner 0.75s linear 0.8;
+
+// }
+
+// .splash-screen-logo{
+
+//   // position:fixed;
+//   // margin: 25px;
+//   // z-index: 9;
+//   transform: rotate(-61deg);
+//   animation: gimbalise-logo 0.75s linear 0.8;
+
+// }
+
+// @keyframes rotate-spinner{
+
+//   0%{
+
+//     transform: rotate(60deg);
+//     opacity: 0.1;
+
+//   }
+
+//   20%{
+
+//     transform: rotate(120deg);
+//     opacity: 0.2;
+
+
+//   }
+
+//   40%{
+
+//     transform: rotate(180deg);
+//     opacity: 0.4;
+
+//   }
+
+//   60%{
+
+//     transform: rotate(240deg);
+//     opacity: 0.6;
+
+//   }
+
+//   80%{
+
+//     transform: rotate(300deg);
+//     opacity: 0.8;
+
+//   }
+
+//   100%{
+
+//     transform: rotate(360deg);
+//     opacity: 1;
+
+//   }
+
+
+// }
+
+// @keyframes gimbalise-logo{
+
+//   0%{
+
+//     transform: rotate(-60deg);
+
+//   }
+
+//   20%{
+
+//     transform: rotate(-120deg);
+
+//   }
+
+//   40%{
+
+//     transform: rotate(-180deg);
+
+//   }
+
+//   60%{
+
+//     transform: rotate(-240deg);
+
+//   }
+
+//   80%{
+
+//     transform: rotate(-300deg);
+
+//   }
+
+//   100%{
+
+//     transform: rotate(-360deg);
+
+//   }
+
+// }
+
+// [WORKING SPLASH ANIMATION v2]====================================================
+// Unlike v1, Text is placed below the ring in DOM. Text is then style with 'position: fixed'
+// and statically placed as center in the ring as possble, essentially overlapping the Ring
+// =================================================================================
+.spinning-ring{
+
+  width: 110px;
+  height: 110px;
+  position:fixed;
+  top: 39%;
+  border: 3px solid;
+  padding: 20px;
+  border-color: transparent black transparent black;
+  border-radius: 50%;
+  transform: rotate(61deg);
+  animation: rotate-spinner 0.75s linear 0.8;
+
+}
+
+.splash-screen-logo{
+
+  position:fixed;
+  z-index: 9;
+  width: 110px;
+  height: 110px;
+  top: 41%;
+
+}
+
+
+.loading-message-row{
+
+  display: flex;
+  justify-content: center;
+  align-content: center;
+
+}
+
+.loading-message{
+  position:fixed;
+  top:55%;
+  font-size: 1.3rem;
+  font-weight: 800;
+  color:#141414;
+  margin-top: 30px;
+
+}
+
+@keyframes rotate-spinner{
+
+  0%{
+
+    transform: rotate(60deg);
+    opacity: 0.1;
+
+  }
+
+  20%{
+
+    transform: rotate(120deg);
+    opacity: 0.2;
+
+
+  }
+
+  40%{
+
+    transform: rotate(180deg);
+    opacity: 0.4;
+
+  }
+
+  60%{
+
+    transform: rotate(240deg);
+    opacity: 0.6;
+
+  }
+
+  80%{
+
+    transform: rotate(300deg);
+    opacity: 0.8;
+
+  }
+
+  100%{
+
+    transform: rotate(360deg);
+    opacity: 1;
+
+  }
+
+
+}
+

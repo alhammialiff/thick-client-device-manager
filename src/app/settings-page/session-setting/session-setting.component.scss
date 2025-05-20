@@ -1,0 +1,105 @@
+.form-container{
+
+  // padding: 10px;
+  // font-size: 0.9rem;
+  margin: 10px 10px;
+
+  h3{
+
+    margin: 0px;
+    margin-bottom: 20px;
+
+  }
+
+}
+
+.form-control{
+
+  margin-top: 5px;
+
+}
+
+.form-control label{
+
+  margin-right: 5px;
+  font-weight: 600;
+
+}
+
+.form-control select{
+
+  border-radius: 6px;
+  border: 1px solid #e8e8e8;
+
+}
+
+// button{
+
+//   cursor: pointer;
+//   // opacity: 1 !important;
+//   padding: 10px;
+//   font-family: "roboto-regular" !important;
+//   font-weight: 800;
+//   font-size: 1.2rem;
+//   // background-color: rgb(214, 214, 214);
+//   background-color: rgb(202, 20, 20);
+//   color: white;
+
+//   border: none;
+//   border-radius: 5px;
+//   // margin: 2px;
+
+// }
+
+// button:hover{
+
+//   background-color: rgb(183, 14, 14);
+//   color: white;
+//   // opacity: 1 !important;
+//   transition: background-color ease-in 0.2s;
+
+// }
+
+// Buttons
+input[type=file]{
+  width: 40vw;
+  border-bottom: 1px solid #dfdfdf;
+}
+
+input[type=text]{
+  font-size: 1rem;
+  height: 20px;
+  border-top: 1px solid #dfdfdf;
+  border-right: 1px solid #dfdfdf;
+  border-left: 1px solid #dfdfdf;
+  border-bottom: 1px solid #dfdfdf;
+  border-radius: 5px;
+}
+
+button,
+input::file-selector-button{
+  cursor: pointer;
+  padding: 10px;
+  font-family: "roboto-regular" !important;
+  color: rgb(239, 235, 235);
+  background-color: #424242;
+  box-shadow: -3px -3px 2px white,
+              2px 2px 3px rgb(208, 208, 208);
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 5px;
+}
+
+button:hover,input::file-selector-button:hover{
+  background-color:rgb(156, 7, 7);
+  color: rgb(255, 255, 255);
+  transition: background-color ease-in 0.25s;
+  // transition: color ease-in 0.25s;
+}
+
+.uploadSection{
+
+  display: flex;
+
+}

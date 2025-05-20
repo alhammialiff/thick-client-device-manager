@@ -1,0 +1,95 @@
+.tab-label{
+
+  font-weight: 800 !important;
+
+}
+
+
+.device-config-form{
+
+  margin: 20px;
+
+}
+
+.form-flex{
+
+  display: flex;
+  justify-content: center;
+
+}
+
+.form-grid{
+
+  display: grid;
+  margin: 20px;
+  grid-template-columns: auto auto;
+  font-family: "roboto-regular";
+
+  div{
+    margin: 5px;
+  }
+
+}
+
+
+label{
+  font-size: 1.1rem !important;
+  font-weight: 800;
+}
+
+input, select{
+
+  width: auto;
+  border-radius: 6px;
+  font-size: 1.1rem;
+
+}
+
+
+button{
+
+  cursor: pointer;
+  width: auto;
+  font-size: 1.2rem;
+  padding: 10px;
+  font-family: "roboto-regular" !important;
+  background-color: #d4d4d4;
+  border: none;
+  border-radius: 6px;
+  margin: 2px;
+
+}
+
+.delete-device-button{
+
+  background-color: rgb(177, 1, 1);
+  color: white;
+
+}
+
+.delete-device-button:hover{
+
+  background-color: red;
+
+}
+
+
+button:hover{
+
+  background-color: #c7c6c6;
+  transition: background-color ease-in 0.2s;
+
+}
+
+.ip-octet-field{
+
+  width: 40px;
+
+}
+
+.form-validation-error{
+
+  font-size:0.8rem;
+  color:red;
+
+}

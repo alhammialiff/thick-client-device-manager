@@ -1,0 +1,84 @@
+<div class="container">
+
+  <h3>Network</h3>
+
+  <div class="device-dropdown-container">
+
+    <div>
+      <form [formGroup]="deviceDropdownForm">
+        <span>Device Name:</span>&nbsp;
+        <select id="device-dropdown" formControlName="deviceIP">
+          <option value="null">Select active HoloLens</option>
+          <ng-container *ngFor="let hololens of activeHololens; index as i">
+            <option value="{{hololens.hostIP}}">
+              {{hololens.deviceName}} ({{hololens.hostIP}})
+            </option>
+          </ng-container>
+        </select>
+      </form>
+      <button class="buttons" (click)="loadNetworkConfig()" [disabled]="activeHololens.length < 1">Load Network Settings</button>
+    </div>
+
+  </div>
+
+  <div class="network-settings-container">
+
+    <div class="wifi-profile-list">
+
+      <h3>Existing WiFi Profiles</h3>
+
+      <ng-container *ngIf="wifiProfiles">
+        <ng-container *ngFor="let profile of wifiProfiles">
+          <app-wifi-profile-row
+            [wifiProfile]="profile"
+            (deleteWifiProfileEvent)="deleteWifiProfileFromDevice($event)"></app-wifi-profile-row>
+        </ng-container>
+      </ng-container>
+
+      <div class="loading-spinner" *ngIf="isWifiProfilesLoading && (!wifiProfiles)">
+        <svg class="ring"
+            viewBox="25 25 50 50"
+            stroke-width="5">
+            <circle cx="50" cy="50" r="20" />
+        </svg>
+      </div>
+
+    </div>
+
+    <div class="available-networks-container">
+      <h3>
+        Available Networks
+        <button class="reload-network-button"
+          (click)="scanWifiNetworks()">
+          <span class="material-symbols-outlined">refresh</span>
+        </button>
+      </h3>
+
+      <div class="available-networks-list">
+
+        <ng-container *ngIf="availableNetworks && !isAvailableNetworkLoading">
+          <ng-container *ngFor="let network of availableNetworks">
+            <app-available-networks-row
+              [wifiNetwork]="network"
+              (wifiNetworkEvent)="connectWifi($event)"></app-available-networks-row>
+          </ng-container>
+        </ng-container>
+
+        <!-- <div class="loading-spinner" *ngIf="isAvailableNetworkLoading && (!availableNetworks)"> -->
+        <div class="loading-spinner" *ngIf="isAvailableNetworkLoading">
+          <svg class="ring"
+            viewBox="25 25 50 50"
+            stroke-width="5">
+            <circle cx="50" cy="50" r="20" />
+          </svg>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- (deleteWifiProfileEvent)="deleteWifiProfileFromDevice($event)"  -->

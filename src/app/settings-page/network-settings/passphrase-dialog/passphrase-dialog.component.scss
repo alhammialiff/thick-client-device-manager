@@ -1,0 +1,57 @@
+.form-container{
+
+  margin: 20px;
+
+}
+
+input[type=password]{
+
+  height: 35px;
+  border-top: 1px solid #dfdfdf;
+  border-right: 1px solid #dfdfdf;
+  border-left: 1px solid #dfdfdf;
+  border-bottom: 1px solid #dfdfdf;
+  border-radius: 5px;
+  font-size:1.2rem;
+
+}
+
+mat-icon{
+
+  color:rgb(119, 206, 148);
+
+
+}
+
+button{
+
+  cursor: pointer;
+  padding: 10px;
+  font-family: "roboto-regular" !important;
+  background-color: #d4d4d4;
+  border: none;
+  border-radius: 5px;
+  margin: 5px;
+
+}
+
+#connect{
+
+  background-color: rgb(189, 2, 2);
+  color: white;
+
+}
+
+#connect:hover{
+
+  background-color: rgb(160, 4, 4);
+
+}
+button:hover{
+
+  background-color: #c7c6c6;
+  transition: background-color ease-in 0.2s;
+
+}
+
+

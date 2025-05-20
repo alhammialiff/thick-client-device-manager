@@ -1,0 +1,1 @@
+FOR /f "tokens=*" %%G IN (' docker ps -q ') DO docker stop %%G

@@ -1,0 +1,139 @@
+.container{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgb(255,255,255);
+  background: linear-gradient(180deg, rgba(255,255,255,1) 60%, rgba(232,232,232,1) 95%);
+}
+
+.row{
+  width: 100vw;
+  // height: 100vh;
+  // border: 1px solid red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.column{
+
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: start;
+
+}
+
+.spinning-ring{
+  width: 110px;
+  height: 110px;
+  display:flex;
+  border: 3px solid;
+  padding: 20px;
+  border-color: transparent black transparent black;
+  border-radius: 50%;
+  transform: rotate(61deg);
+  animation: rotate-spinner 0.75s linear 1;
+
+}
+
+.splash-screen-logo{
+
+  // position:fixed;
+  // margin: 25px;
+  transform: rotate(-61deg);
+  animation: gimbalise-logo 0.75s linear 1;
+
+}
+
+@keyframes rotate-spinner{
+
+  0%{
+
+    transform: rotate(60deg);
+    opacity: 0.1;
+
+  }
+
+  20%{
+
+    transform: rotate(120deg);
+    opacity: 0.2;
+
+
+  }
+
+  40%{
+
+    transform: rotate(180deg);
+    opacity: 0.4;
+
+  }
+
+  60%{
+
+    transform: rotate(240deg);
+    opacity: 0.6;
+
+  }
+
+  80%{
+
+    transform: rotate(300deg);
+    opacity: 0.8;
+
+  }
+
+  100%{
+
+    transform: rotate(360deg);
+    opacity: 1;
+
+  }
+
+
+}
+
+@keyframes gimbalise-logo{
+
+  0%{
+
+    transform: rotate(-60deg);
+
+  }
+
+  20%{
+
+    transform: rotate(-120deg);
+
+  }
+
+  40%{
+
+    transform: rotate(-180deg);
+
+  }
+
+  60%{
+
+    transform: rotate(-240deg);
+
+  }
+
+  80%{
+
+    transform: rotate(-300deg);
+
+  }
+
+  100%{
+
+    transform: rotate(-360deg);
+
+  }
+
+}

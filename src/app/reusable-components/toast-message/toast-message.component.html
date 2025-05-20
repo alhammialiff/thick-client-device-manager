@@ -1,0 +1,10 @@
+<div *ngIf="showToast" [class.toast-popup-show]="showToast">
+<!-- <div class="toast-popup-show"> -->
+  <div class="toast-column">
+    <span class="material-symbols-outlined">info</span>
+  </div>
+  <div class="toast-column" data-testid="toast-message">
+    <p>{{notification}}</p>
+  </div>
+
+</div>

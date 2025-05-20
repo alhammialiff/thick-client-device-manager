@@ -1,0 +1,213 @@
+<div *ngIf="!showDeviceDetailsSectionLoading">
+
+  <!-- Device Detail Header -->
+  <div class="header-alignment">
+    <h3>HoloLens Details - {{deviceData.deviceName}}</h3>
+  </div>
+
+  <!-- Tab Group -->
+  <mat-tab-group id="device-details-tab-container" color="accent">
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <span class="activity-log-tab-label">HoloLens</span>
+      </ng-template>
+      <div class="hololens-container">
+
+        <div class="header-alignment">
+          <h3> {{data.deviceName}}</h3>
+        </div>
+
+        <div class="content-alignment">
+          <p><strong>Device ID:</strong> {{id}}</p>
+          <p>
+            <strong>Status: </strong>
+
+            <ng-container *ngIf="data?.isOnline; else offlineIcon;">
+
+              <ng-container *ngIf="data?.lowPowerState; else onlineIcon;">
+                <!-- <span [class.sleepIcon]="data?.isOnline && data?.lowPowerState"></span> -->
+                <span id="sleepIcon" class="material-icons material-symbols-outlined" [class.sleepIcon]="data?.isOnline && data?.lowPowerState">
+                  bedtime
+                </span>
+              </ng-container>
+
+              <ng-template #onlineIcon>
+                <span [class.onlineIcon]="data?.isOnline"></span>
+              </ng-template>
+
+            </ng-container>
+
+            <ng-template #offlineIcon>
+              <span [class.offlineIcon]="!data?.isOnline"></span>
+            </ng-template>
+
+            <ng-container *ngIf="data?.isOnline; else offlineText;">
+
+              <ng-container *ngIf="data?.lowPowerState; else onlineText;">
+                <span class="status-info-text"><strong> Sleep</strong></span>
+              </ng-container>
+
+              <ng-template #onlineText>
+                <span class="status-info-text"><strong> Online</strong></span>
+              </ng-template>
+
+            </ng-container>
+
+            <ng-template #offlineText>
+              <span class="status-info-text"><strong> Offline</strong></span>
+            </ng-template>
+
+            <br/>
+
+            <ng-template #sleepText>
+                <span class="status-info-text"><strong> Sleep</strong></span>
+            </ng-template>
+          </p>
+          <p><strong>Host IP:</strong> {{data.hostIP}}</p>
+          <p><strong>Battery:</strong> {{data.battLife}}% <span *ngIf="deviceData.isCharging">(Charging)</span></p>
+
+          <button (click)="onClickRestart()">Restart</button> &nbsp;
+          <button (click)="onClickShutdown()">Shutdown</button>
+
+          <!-- Uncomment to test dynamic toast rendering -->
+          <!-- <button (click)="testFunction()">Test Toast</button> -->
+
+        </div>
+
+      </div>
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <span class="activity-log-tab-label">Add/Remove HoloLens Apps</span>
+      </ng-template>
+
+      <div class="add-remove-apps-container">
+        <h3 id="add-remove-apps-header">Add/Remove HoloLens App</h3>
+        <div [hidden]="showAppInstallationLoading" class="uploadAppForm">
+          <form [formGroup]="hlFileUploaderForm" enctype="multipart/form-data">
+              <div class="uploadSection">
+                  <input type="file"
+                      name="hlFileUploader"
+                      size="0"
+                      formControlName="hlFileName"
+                      (change)="retrieveFileToUpload($event)"/>
+                  <!-- <span>{{ hlFileUploader.hlFileName }}</span> -->
+                  &nbsp;
+                  &nbsp;
+                  <button class="button" (click)="onInstall()" [disabled]="!hlFileUploader.hlFileName">Install</button>
+              </div>
+          </form>
+        </div>
+
+        <div>
+          <div [hidden]="!showAppInstallationLoading">
+            <div id="inline-loading-bar"></div>
+            <span><strong>App Installation in progress...</strong></span>
+          </div>
+        </div>
+
+        <br/>
+
+        <div *ngIf="!showInstalledAppsSectionLoading">
+          <form [formGroup]="appRemoveForm">
+              <mat-form-field>
+                  <mat-label>Hololens Installed App</mat-label>
+                  <!-- STOP HERE CANT DISABLE SELECTTTTT -->
+                  <mat-select class="appToRemoveDropdown" formControlName="appToRemove">
+                      <mat-option *ngFor="let displayName of packageDisplayNames" [value]="displayName">
+                          {{ displayName }}
+                      </mat-option>
+                  </mat-select>
+              </mat-form-field>
+              &nbsp;
+              <button (click)="onUninstall()" [disabled]="packageDisplayNames.length < 1">Uninstall</button>
+          </form>
+        </div>
+
+        <!-- <ng-template #installedAppSectionLoadingSpinner> -->
+        <div>
+
+          <div *ngIf="showInstalledAppsSectionLoading">
+            <div id="inline-loading-bar"></div>
+            <span><strong>Fetching Installed Apps</strong></span>
+          </div>
+          <div *ngIf="showAppUninstallationLoading">
+            <div id="inline-loading-bar"></div>
+            <span><strong>App Uninstallation in progress...</strong></span>
+          </div>
+          <div class="appRemoveFormDisabledMessage" *ngIf="appRemoveFormIsDisabled">
+            <!-- <div id="inline-loading-bar"></div> -->
+            <span><span class="info-icon material-symbols-outlined">info</span>Hololens needs to be online to retrieve installed apps</span>
+          </div>
+
+
+        </div>
+        <!-- </ng-template> -->
+      </div>
+    </mat-tab>
+    <!-- <mat-tab label="Mixed Reality Capture">
+      <div>
+
+        <h3>Mixed Reality Capture</h3>
+
+        <div class="mrc-control-buttons">
+          <button (click)="startMRCLivePreview()">Start Live Preview</button>&nbsp;
+          <button (click)="endMRCLivePreview()">End Live Preview</button>
+        </div>
+
+        <ng-container *ngIf="playMRCStream">
+          <app-video-streamer [videoStreaming$]="dataToPassToVideoStreamer"></app-video-streamer>
+        </ng-container>
+
+      </div>
+
+    </mat-tab> -->
+
+  </mat-tab-group>
+</div>
+
+
+<div *ngIf="showDeviceDetailsSectionLoading" class="loading-spinner-container">
+
+  <div>
+
+    <div class="loading-spinner">
+      <!-- <mat-spinner color="accent"></mat-spinner> -->
+      <svg class="ring"
+        viewBox="25 25 50 50"
+        stroke-width="5">
+        <circle cx="50" cy="50" r="20" />
+      </svg>
+
+    </div>
+
+
+    <div>
+      <span><strong>Loading Device Details</strong></span>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- Toast Message -->
+<!-- <ng-container insertToastMessage>
+</ng-container> -->
+
+<!-- <div *ngIf="showAppInstallationLoading" class="loading-spinner-container">
+
+  <div>
+
+    <div class="loading-spinner">
+      <mat-spinner color="accent"></mat-spinner>
+    </div>
+
+    <div>
+      <span><strong>Installation in Progress...</strong></span>
+    </div>
+
+  </div>
+
+</div> -->

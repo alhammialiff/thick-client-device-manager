@@ -1,0 +1,120 @@
+<div class="device-config-form">
+
+  <div class="form-flex">
+      <h2>Onboard HoloLens</h2>
+  </div>
+
+  <div class="form-flex">
+      <h3>1. Enter a HoloLens Config</h3>
+  </div>
+
+    <form id="registration-form" class="form-flex" [formGroup]="deviceRegistrationForm">
+
+      <div class="form-grid">
+
+        <div>
+          <label>Device Name:</label>
+        </div>
+
+        <div>
+          <input formControlName="deviceName"
+            type="text"
+            data-testid="device-config-name-field">
+        </div>
+
+        <div>
+          <label>Device IP:</label>
+        </div>
+
+        <div>
+          <input class="ip-octet-field"
+            formControlName="deviceIP_o1"
+            type="text"
+            maxlength="3"
+            (click)="selectAllExistingText($event)"
+            data-testid="device-config-ip-1-field"> .
+          <input class="ip-octet-field"
+            formControlName="deviceIP_o2"
+            type="text"
+            maxlength="3"
+            (click)="selectAllExistingText($event)"
+            data-testid="device-config-ip-2-field"> .
+          <input class="ip-octet-field"
+            formControlName="deviceIP_o3"
+            type="text"
+            maxlength="3"
+            (click)="selectAllExistingText($event)"
+            data-testid="device-config-ip-3-field"> .
+          <input class="ip-octet-field"
+            formControlName="deviceIP_o4"
+            type="text"
+            maxlength="3"
+            (click)="selectAllExistingText($event)"
+            data-testid="device-config-ip-4-field">
+
+          <div *ngIf="(deviceIP_o1.errors?.['required'] && deviceIP_o1.touched)
+            || (deviceIP_o2.errors?.['required'] && deviceIP_o2.touched)
+            || (deviceIP_o3.errors?.['required'] && deviceIP_o3.touched)
+            || (deviceIP_o4.errors?.['required'] && deviceIP_o4.touched)"
+            class="form-validation-error">
+            IP Address is not completely filled
+          </div>
+          <div *ngIf="deviceIP_o1.errors?.['pattern']
+            || deviceIP_o2.errors?.['pattern']
+            || deviceIP_o3.errors?.['pattern']
+            || deviceIP_o4.errors?.['pattern']"
+            class="form-validation-error">
+            IP Address should only be numbers
+          </div>
+
+          <input id="ip-address" formControlName="hostIP" type="hidden">
+
+        </div>
+
+        <br>
+
+      </div>
+
+      <span><hr></span>
+
+      <div class="form-flex">
+        <h4>2. Enter Windows Device Portal Access</h4>
+      </div>
+
+      <div class="form-grid">
+        <div>
+          <label>Username:</label>
+        </div>
+        <div>
+          <input type="text" formControlName="username" placeholder="Enter Username" required>
+          <div *ngIf="username?.errors?.['required'] && username?.touched" class="form-validation-error">
+              Please key in WDP Username
+          </div>
+        </div>
+
+        <div>
+          <label>Password:</label>
+        </div>
+        <div>
+          <input type="password" formControlName="password" placeholder="Enter Password" required>
+          <div *ngIf="username?.errors?.['required'] && username?.touched" class="form-validation-error">
+            Please key in WDP Password
+          </div>
+        </div>
+      </div>
+
+    </form>
+
+    <div class="form-flex">
+      <button
+      id="onboard-button"
+      [class.disabled-button]="!deviceRegistrationForm.valid"
+      (click)="onSubmitRegistration()"
+      [disabled]="!deviceRegistrationForm.valid"
+      data-testid="device-config-save-btn">Onboard</button>
+      <button (click)="closeConfigPage()" data-testid="device-config-cancel-btn">Cancel</button>
+      <!-- <button (click)="deleteDevice()" class="delete-device-button"  data-testid="device-config-delete-btn">Delete Device</button> -->
+    </div>
+
+
+  </div>

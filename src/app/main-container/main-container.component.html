@@ -1,0 +1,117 @@
+
+<!-- Loading Page -->
+<ng-container *ngIf="showSplashScreen">
+  <div class="splash-screen-container">
+    <div class="splash-screen-image-row">
+      <!-- <div class="spinning-ring">
+        <img class="splash-screen-logo" src="/assets/images/brand-logo.png" alt="">
+      </div> -->
+      <div class="spinning-ring">
+      </div>
+      <img class="splash-screen-logo" src="/assets/images/brand-logo.png" alt="">
+    </div>
+    <div></div>
+    <div class="loading-message-row">
+      <div #loadingMessage class="loading-message">
+        Synchronising HoloLens Data
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="!showSplashScreen">
+    <div class="main-container">
+
+      <!-- Topnav -->
+      <app-top-nav></app-top-nav>
+
+      <!-- Sidenav & Main Content -->
+      <mat-drawer-container>
+
+        <!-- Sidenav -->
+        <mat-drawer class="side-nav" mode="side" opened>
+          <!-- <div class="icon-panel">
+            <mat-icon>home</mat-icon>
+          </div> -->
+          <div routerLink="/started/overview" class="icon-panel" title="Overview">
+            <div class="nav-icon">
+              <!-- <a><mat-icon>device_hub</mat-icon></a> -->
+              <a><span class="material-symbols-outlined">
+                space_dashboard
+                </span>
+              </a>
+            </div>
+            <div class="icon-title">
+              <span>Main</span>
+            </div>
+          </div>
+          <div routerLink="/started/mixed-reality-capture" class="icon-panel" title="Mixed Reality Capture">
+
+            <div class="nav-icon">
+              <a><span class="material-symbols-outlined">cast</span></a>
+            </div>
+            <div class="icon-title">
+              <span>Live</span>
+            </div>
+
+          </div>
+          <div routerLink="/started/settings" class="icon-panel" title="Settings">
+            <!-- <div class="nav-icon">
+              <a><mat-icon>settings</mat-icon></a>
+            </div> -->
+            <div class="nav-icon">
+              <span class="material-symbols-outlined">
+                settings
+              </span>
+            </div>
+            <div class="icon-title">
+              <span>Settings</span>
+            </div>
+          </div>
+          <div routerLink="/started/test" class="icon-panel" title="test">
+            <!-- <div class="nav-icon">
+              <a><mat-icon>settings</mat-icon></a>
+            </div> -->
+            <div class="nav-icon">
+              <span class="material-symbols-outlined">
+                construction
+              </span>
+            </div>
+            <div class="icon-title">
+              <span>Test</span>
+            </div>
+          </div>
+
+          <!-- Uncomment once Help Page is complete -->
+          <!-- <div class="icon-panel" title="Help/Documentation">
+            <div class="nav-icon">
+              <a><mat-icon>help</mat-icon></a>
+            </div>
+            <div class="icon-title">
+              <span>Help</span>
+            </div>
+          </div> -->
+
+        </mat-drawer>
+
+        <!-- Main App Content -->
+        <mat-drawer-content>
+
+          <!-- Router Outlet to various pages -->
+          <router-outlet></router-outlet>
+
+          <ng-template #isLoading>
+              <div >
+                  <mat-spinner class="loading"></mat-spinner>
+              </div>
+          </ng-template>
+
+          <app-footer></app-footer>
+
+        </mat-drawer-content>
+
+      </mat-drawer-container>
+
+    </div>
+</ng-container>
+

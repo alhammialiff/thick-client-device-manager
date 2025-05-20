@@ -1,0 +1,49 @@
+<div class="wifi-network" (mouseenter)="showRemoveButton()" (mouseleave)="hideRemoveButton()">
+
+  <div>
+    <span class="material-symbols-outlined">wifi</span>
+    <div *ngIf="wifiNetwork.AlreadyConnected"
+      class="wifi-prop-connected"><strong>Connected</strong></div>
+    <div *ngIf="wifiNetwork.ProfileAvailable"
+      class="wifi-prop-profile-available"><strong>Profile Available</strong></div>
+  </div>
+
+  <div class="wifi-prop">
+    <div class="wifi-prop-header">
+      Name
+    </div>
+    <div class="wifi-prop-value">
+      <strong>{{wifiNetwork.SSID}}</strong>
+    </div>
+  </div>
+  <div class="wifi-prop">
+    <div class="wifi-prop-header">
+      Auth
+    </div>
+    <div class="wifi-prop-value">
+      <strong>{{wifiNetwork.AuthenticationAlgorithm}}</strong>
+    </div>
+  </div>
+  <div class="wifi-prop">
+    <div class="wifi-prop-header">
+      Encryption
+    </div>
+    <div class="wifi-prop-value">
+      <strong>{{wifiNetwork.CipherAlgorithm}}</strong>
+    </div>
+  </div>
+  <div class="wifi-prop">
+    <div class="wifi-prop-header">Signal</div>
+    <div class="wifi-prop-value">
+      <strong>{{wifiNetwork.SignalQuality}}</strong>
+    </div>
+  </div>
+
+  <div *ngIf="!wifiNetwork.AlreadyConnected"
+    class="connect-button"
+    [hidden]="!showCloseButton"
+    (click)="openPassPhraseDialog()">
+    <button><strong>Connect</strong></button>
+  </div>
+
+</div>

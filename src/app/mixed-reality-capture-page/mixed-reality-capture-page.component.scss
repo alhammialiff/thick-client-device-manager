@@ -1,0 +1,284 @@
+.video-streamer-dashboard{
+
+  display: flex;
+  min-height: 230px;
+  flex-direction: column;
+  // border: 1px solid #d4d4d4;
+  border-radius: 12px;
+  margin: 10px;
+  // background-color: rgb(245, 245, 245);
+  // box-shadow: 2px 2px 6px #b6b6b6;
+  background-color: #f0f0f3;
+  // box-shadow: 2px 2px 6px #b6b6b6;
+  box-shadow: -2px -2px 2px white,
+               2px 2px 3px rgb(208, 208, 208);
+
+  // max-width: 100vw;
+  // grid-template-columns: repeat(2, 1fr);
+  // grid-template-rows: auto;
+  // grid-template-areas:
+  //   "a b";
+
+  video{
+
+    max-width: 100%;
+    width: 100%;
+
+  }
+
+}
+
+.container-header{
+
+  margin: 20px;
+  font-size: 1.3rem;
+
+}
+
+
+.info-section{
+
+  width: fit-content;
+  margin: 10px;
+  padding: 20px;
+  background-color: rgb(252, 249, 217);
+  border: 1px solid #dfdfdf;
+  border-radius: 6px;
+  font-size: 1.1rem;
+
+
+  span{
+
+    color: #910000;
+    font-weight: 600;
+
+  }
+
+  .info-content{
+
+    font-weight: 800;
+
+  }
+
+}
+
+.info-header{
+
+  display: flex;
+  flex-direction: row;
+
+  .info-close-button-container{
+
+    margin-left: auto;
+
+    #close-button{
+
+      cursor: pointer;
+
+    }
+
+  }
+
+}
+
+.grid-stream-container{
+
+  min-height: 200px;
+  // border: 1px solid #d4d4d4;
+  border-radius: 12px;
+  margin: 0px 10px;
+  margin-bottom: 20px;
+  background-color: #f0f0f3;
+  // box-shadow: 2px 2px 6px #b6b6b6;
+  box-shadow: -2px -2px 2px white,
+               2px 2px 3px rgb(208, 208, 208);
+
+
+}
+
+.grid-stream-section-header{
+  padding-top: 5px;
+  margin: 5px 20px;
+  font-size: 1.5rem;
+
+}
+
+// ===============================
+// Grid Stream Table
+// ===============================
+.grid-stream-table-header, .grid-stream-table-row{
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas: "gs-col1 gs-col2 gs-col3 gs-col4 gs-col5 gs-col6 gs-col7";
+  font-size: 1.2rem;
+  font-weight: 500;
+
+  // border-bottom: solid 1px #bcbcbc;
+  // border-radius: 6px;
+  padding: 5px;
+  margin: 2px 20px;
+  // box-shadow: 1px 1px #d8d8ca !important;
+
+  text-align: center;
+
+  .stream-device-list{
+
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+    border: 1px solid #d4d4d4;
+    border-radius: 6px;
+    overflow-y: auto;
+
+  }
+
+}
+
+[type="checkbox"]{
+
+  cursor: pointer;
+  width:1.8rem;
+  height:1.8rem;
+  -webkit-appearance:none;
+  background: none;
+  background-color: transparent;
+  border:#454545 1px solid;
+  border-radius: 50%;
+
+}
+
+[type="checkbox"]::before{
+
+  width:1.8rem;
+  height:1.8rem;
+  color: #ececec;
+  background-color: #dddddd !important;
+
+}
+
+[type="checkbox"]:hover{
+
+  cursor: pointer;
+  width:1.8rem;
+  height:1.8rem;
+  background-color: #dddddd !important;
+  background-image: url('/assets/images/check-mark.svg');
+  background-size: cover;
+  color: #ececec !important;
+
+}
+
+[type="checkbox"]:checked{
+
+  cursor: pointer;
+  background: url('/assets/images/check-mark.svg');
+  background-size: cover;
+  background-color: #dddddd;
+  color: #ececec;
+
+}
+
+.disabledCheckBox{
+
+  cursor:default;
+  background-size: cover;
+  background-color: #acacac;
+  color: #acacac;
+
+}
+
+.disabledCheckBox:hover{
+
+  cursor:default;
+  background: none;
+  background-color: #acacac !important;
+  color: #acacac;
+
+}
+
+.grid-stream-table-header{
+
+  background-color: #f0f0f3;
+  color: #2c2c2c;
+  font-weight: 600;
+  // border-top-left-radius: 6px;
+  // border-top-right-radius: 6px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+
+}
+
+.grid-stream-table-row{
+
+  background-color: #f0f0f3;
+  border-top: 1px solid #2c2c2c;
+  // border-radius: 12px;
+
+}
+
+.null-grid-stream-row{
+
+  display:none;
+
+}
+
+.stream-solo-button, .stream-multi-button-enabled{
+  cursor: pointer;
+  background-color: #424242;
+  box-shadow: -3px -3px 2px white,
+              2px 2px 3px rgb(208, 208, 208);
+  color:#e9e9e9;
+  margin-top: 0px;
+
+}
+
+.stream-multi-button{
+
+  cursor:auto;
+
+}
+
+.stream-solo-button:hover, .stream-multi-button-enabled:hover{
+  cursor: pointer;
+  background-color:rgb(156, 7, 7);
+  color: white;
+  transition: 0.25s background-color ease-in;
+
+}
+
+
+.stream-multi-button-container{
+
+  display: flex;
+  justify-content: end;
+
+  .stream-multi-button{
+    margin: 5px 20px;
+    margin-left: auto;
+    width: 150px;
+
+  }
+
+}
+
+button{
+
+  margin-top:10px;
+  // padding: 10px;
+  width: 100px;
+  height: 40px;
+  cursor: pointer;
+  font-family: "roboto-regular" !important;
+  background-color: #d4d4d4;
+  border: none;
+  border-radius: 5px;
+
+}
+
+
+
+
+
+

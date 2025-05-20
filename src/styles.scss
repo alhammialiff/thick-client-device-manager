@@ -1,0 +1,297 @@
+@use "@angular/material" as mat;
+@import '@angular/cdk/overlay-prebuilt.css';
+@import 'material-symbols';
+
+// This is required in order for Angular Material library to display its aesthetics
+@import "/node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+@font-face {
+
+    font-family:"roboto-regular";
+    src: url("/assets/fonts/Roboto-Regular.ttf");
+
+}
+
+// @font-face {
+//   font-family: 'Material Icons';
+//   font-style: normal;
+//   font-weight: 400;
+//   src: local('Material Icons'),
+//     local('MaterialIcons-Regular'),
+//     // url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'),
+//     // url(https://example.com/MaterialIcons-Regular.woff) format('woff'),
+//     url(/src/assets/fonts/google-material-icons/font/MaterialIcons-Regular.ttf) format('truetype');
+// }
+
+// .material-icons {
+//   font-family: 'Material Icons';
+//   font-weight: normal;
+//   font-style: normal;
+//   font-size: 24px;  /* Preferred icon size */
+//   display: inline-block;
+//   line-height: 1;
+//   text-transform: none;
+//   letter-spacing: normal;
+//   word-wrap: normal;
+//   white-space: nowrap;
+//   direction: ltr;
+
+//   /* Support for all WebKit browsers. */
+//   -webkit-font-smoothing: antialiased;
+//   /* Support for Safari and Chrome. */
+//   text-rendering: optimizeLegibility;
+
+//   /* Support for Firefox. */
+//   -moz-osx-font-smoothing: grayscale;
+
+//   /* Support for IE. */
+//   font-feature-settings: 'liga';
+// }
+
+.material-symbols-outlined{
+
+  font-variation-settings: "FILL" 1, "wght" 300, "GRAD" 0, "opsz" 24 !important;
+
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+*{
+    font-family: 'Heebo', sans-serif;
+    // overflow:hidden;
+}
+
+body{
+  margin: 0;
+  background-color: #fafafa;
+
+}
+
+$gold-palette: (
+  50 : #f8f8f5,
+  100 : #eeede7,
+  200 : #e3e1d7,
+  300 : #d7d5c6,
+  400 : #cfccba,
+  500 : #c6c3ae,
+  600 : #c0bda7,
+  700 : #b9b59d,
+  800 : #b1ae94,
+  900 : #a4a184,
+  A100 : #ffffff,
+  A200 : #ffffff,
+  A400 : #fff9cd,
+  A700 : #fff6b3,
+  contrast: (
+      50 : #000000,
+      100 : #000000,
+      200 : #000000,
+      300 : #000000,
+      400 : #000000,
+      500 : #000000,
+      600 : #000000,
+      700 : #000000,
+      800 : #000000,
+      900 : #000000,
+      A100 : #000000,
+      A200 : #000000,
+      A400 : #000000,
+      A700 : #000000,
+  )
+);
+
+$grey-palette: (
+    50 : #e8e8e8,
+    100 : #c6c6c6,
+    200 : #a1a1a1,
+    300 : #7b7b7b,
+    400 : #5e5e5e,
+    500 : #424242,
+    600 : #3c3c3c,
+    700 : #333333,
+    800 : #2b2b2b,
+    900 : #1d1d1d,
+    A100 : #f07878,
+    A200 : #eb4a4a,
+    A400 : #ff0303,
+    A700 : #e90000,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #ffffff,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+
+$blue-palette: (
+  50 : #e2e8f2,
+  100 : #b7c6dd,
+  200 : #87a0c7,
+  300 : #567ab1,
+  400 : #325ea0,
+  500 : #0e418f,
+  600 : #0c3b87,
+  700 : #0a327c,
+  800 : #082a72,
+  900 : #041c60,
+  A100 : #90a7ff,
+  A200 : #5d7eff,
+  A400 : #2a55ff,
+  A700 : #1141ff,
+  contrast: (
+      50 : #000000,
+      100 : #000000,
+      200 : #000000,
+      300 : #ffffff,
+      400 : #ffffff,
+      500 : #ffffff,
+      600 : #ffffff,
+      700 : #ffffff,
+      800 : #ffffff,
+      900 : #ffffff,
+      A100 : #000000,
+      A200 : #000000,
+      A400 : #ffffff,
+      A700 : #ffffff,
+  )
+);
+
+$red-palette: (
+  50 : #fff9f9,
+  100 : #fff1f1,
+  200 : #ffe8e8,
+  300 : #ffdfdf,
+  400 : #ffd8d8,
+  500 : #ffd1d1,
+  600 : #ffcccc,
+  700 : #ffc6c6,
+  800 : #ffc0c0,
+  900 : #ffb5b5,
+  A100 : #ffffff,
+  A200 : #ffffff,
+  A400 : #ffffff,
+  A700 : #ffffff,
+  contrast: (
+      50 : #000000,
+      100 : #000000,
+      200 : #000000,
+      300 : #000000,
+      400 : #000000,
+      500 : #000000,
+      600 : #000000,
+      700 : #000000,
+      800 : #000000,
+      900 : #000000,
+      A100 : #000000,
+      A200 : #000000,
+      A400 : #000000,
+      A700 : #000000,
+  )
+);
+
+$maroon-palette: (
+  50 : #f3e0e0,
+  100 : #e0b3b3,
+  200 : #cc8080,
+  300 : #b84d4d,
+  400 : #a82626,
+  500 : #990000,
+  600 : #910000,
+  700 : #860000,
+  800 : #7c0000,
+  900 : #6b0000,
+  A100 : #ff9a9a,
+  A200 : #ff6767,
+  A400 : #ff3434,
+  A700 : #ff1a1a,
+  contrast: (
+      50 : #000000,
+      100 : #000000,
+      200 : #000000,
+      300 : #ffffff,
+      400 : #ffffff,
+      500 : #ffffff,
+      600 : #ffffff,
+      700 : #ffffff,
+      800 : #ffffff,
+      900 : #ffffff,
+      A100 : #000000,
+      A200 : #000000,
+      A400 : #ffffff,
+      A700 : #ffffff,
+  )
+);
+
+
+
+$primary-theme: mat.define-palette($grey-palette, 900);
+$accent-theme: mat.define-palette($maroon-palette, 500);
+$warn-theme: mat.define-palette($red-palette, 500);
+
+$app-theme:mat.define-light-theme(
+    (
+      color: (
+      primary: $primary-theme,
+      accent: $accent-theme,
+      warn: $warn-theme
+    )
+  )
+);
+
+@include mat.all-component-themes($app-theme);
+
+.mat-tab-label{
+  // background: map-get($blue-palette, 900);
+  background: map-get($maroon-palette,600);
+
+}
+
+h2, h3, h4, h5{
+  // color: map-get($blue-palette,600);
+  // color:#484848;
+  color: map-get($maroon-palette,600);
+}
+
+span > strong, p > strong {
+
+  color: #3e3e3e;
+
+}
+
+// This is essential because -:
+//  1) User hovers over device panel
+//  2) Overlay Panel appears
+//  3) Overlay Panel moves up to overlap Device Panel
+//  4) BUT, Overlay Panel leaves white space behind, causing a huge unoccupied gap to the Panel Grid
+app-device-panel.ng-star-inserted {
+  height: 280px;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 300,
+  'GRAD' 0,
+  'opsz' 24;
+  font-size: 32px;
+  padding: 5px;
+}
+
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  /* add your styles */
+  border-radius: 12px !important;
+}
+
+

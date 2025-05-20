@@ -1,0 +1,261 @@
+p{
+    font-size: 1.2rem;
+}
+
+.header-alignment h3{
+
+  font-size: 1.5rem !important;
+  margin-left: 10px;
+
+}
+
+#add-remove-apps-header{
+
+  font-size: 1.4rem!important;
+
+}
+
+.mat-mdc-tab{
+
+  margin: 10px !important;
+
+}
+
+.activity-log-tab-label{
+
+  font-weight: 800 !important;
+  font-size: 1.1rem;
+
+}
+
+// Add/remove Hololens App Section
+.hololens-container, .add-remove-apps-container{
+
+  margin: 15px;
+  padding: 20px;
+  background-color: rgb(245,245,245);
+  background-color: #f0f0f3;
+  // border: 1px solid #d4d4d4;
+  border-radius: 12px;
+  // box-shadow: 2px 2px 6px #b6b6b6;
+  box-shadow: -2px -2px 2px white,
+               2px 2px 3px rgb(208, 208, 208);
+
+}
+
+.onlineIcon{
+
+  display: inline-flex;
+  background-color: green;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+
+}
+
+.sleepIcon{
+
+  display: inline-flex;
+  // background-color: rgb(170, 202, 221);
+  color:rgb(170,202,221);
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+
+}
+
+.offlineIcon{
+
+    display: inline-flex;
+    // background-color: rgb(118, 14, 2);
+    background-color: rgb(180, 180, 180);
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+
+}
+
+mat-form-field{
+    width: 40vw;
+}
+
+// Buttons
+input[type=file]{
+    width: 40vw;
+    border-bottom: 1px solid #dfdfdf;
+}
+
+input[type=text]{
+    font-size:1.2rem;
+    height: 20px;
+    border-top: 1px solid #dfdfdf;
+    border-right: 1px solid #dfdfdf;
+    border-left: 1px solid #dfdfdf;
+    border-bottom: 1px solid #dfdfdf;
+    border-radius: 5px;
+}
+
+button,
+input::file-selector-button{
+    padding: 10px;
+    font-family: "roboto-regular" !important;
+    color: rgb(239, 235, 235);
+    background-color: #be0505;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover,input::file-selector-button:hover{
+    background-color: #870101;
+    color: rgb(255, 255, 255);
+    transition: background-color ease-in 0.25s;
+    transition: color ease-in 0.25s;
+}
+
+.uploadSection{
+
+    display: flex;
+
+}
+
+.mrc-control-buttons{
+
+  margin-bottom: 20px;
+
+}
+
+.loading-spinner-container{
+  // border: 1px solid red;
+  height: 20vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9rem;
+
+  .loading-spinner{
+
+    svg{
+
+      // Static padding to centralise loading spinner (for now)
+      margin-left: 40px !important;
+
+    }
+
+  }
+
+
+
+}
+
+#inline-loading-bar{
+
+  display: block;
+  width: 200px;
+  height: 2px;
+  border: 1px solid #990000;
+  background-color: #990000;
+  animation: animateLoadingBar 1s ease-in-out alternate infinite;
+
+}
+
+.appRemoveFormDisabledMessage{
+
+  margin-top: -20px;
+  font-size: 0.85rem;
+  color:#5c4aff;
+
+}
+
+.material-icons{
+  font-size: 1.2rem!important;
+  height: 17px;
+}
+
+#sleepIcon{
+
+  color: rgb(170,202,221);
+  font-size: 3rem;
+
+}
+
+@keyframes animateLoadingBar{
+
+  0%{
+
+    width: 200px;
+
+  }
+  25%{
+
+    width: 100px;
+
+  }
+  50%{
+
+    width: 0px;
+
+  }
+  75%{
+
+    width: 200px;
+
+  }
+  100%{
+
+    width: 0px
+
+  }
+
+
+}
+
+// Custom loading spinner
+.ring {
+  --uib-size: 60px;
+  --uib-speed: 2s;
+  --uib-color: RGB(61,79,179);
+
+  height: var(--uib-size);
+  width: var(--uib-size);
+  vertical-align: middle;
+  transform-origin: center;
+  animation: rotate var(--uib-speed) linear infinite;
+}
+
+.ring circle {
+  fill: none;
+  stroke: var(--uib-color);
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+  stroke-linecap: round;
+  animation: stretch calc(var(--uib-speed) * 0.75) ease-in-out infinite;
+}
+
+@keyframes rotate {
+
+  100% {
+    transform: rotate(360deg);
+  }
+
+}
+
+@keyframes stretch {
+
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 90, 200;
+    stroke-dashoffset: -35px;
+  }
+  100% {
+    stroke-dashoffset: -124px;
+  }
+
+}
+
+

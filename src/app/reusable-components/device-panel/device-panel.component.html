@@ -1,0 +1,226 @@
+<!-- STOP HERE: NG-STAR-INSERTED IS CAUSING RENDERING ISSUES -->
+<ng-container>
+
+
+  <!-- Overlay Panel -->
+  <mat-card
+    class="popUpDevicePanel"
+    [class.showOverlayCard]="showDevicePanelOverlay"
+    [class.hideOverlayCard]="!showDevicePanelOverlay"
+    (mouseleave)="setDevicePanelOverlayFlagToFalse()"
+    [@enterAnimation]="showDevicePanelOverlay? 'open':'closed'"
+    data-testid="device-panel-pop-up">
+
+    <div class="overlayPanelContainer">
+      <div>
+        <button id="detailsButton" class="overlayButtons" (click)="openDeviceDetailsSection()"
+          data-testid="device-panel-details-btn">
+          <div id="detailsButtonIconAndText">
+            <span>...</span>
+            <span style="font-size: 0.65rem;padding:0;">Details</span>
+          </div>
+        </button>
+      </div>
+      <div>
+        <button id="settingsButton" class="overlayButtons" (click)="openDeviceConfigPopUpDialog()"
+          data-testid="device-panel-settings-btn">
+
+          <span id="settingsIcon" class="material-symbols-outlined">settings</span>
+          <div id="settingsButtonIconAndText">
+            <span style="font-size: 0.65rem;padding:0;">Settings</span>
+          </div>
+        </button>
+      </div>
+    </div>
+
+  </mat-card>
+
+  <!-- Device Panel -->
+  <mat-card
+    @fadeInEntrance
+    class="devicePanel"
+    [class.flashUpdateBackground]="updateFlash"
+    [class.hideUpdateBackground]="!updateFlash"
+    [class.buryDevicePanel]="showDevicePanelOverlay"
+    (mouseenter)="setDevicePanelOverlayFlagToTrue()"
+    data-testid="device-panel">
+
+      <!-- Device Card Header -->
+      <mat-card-header>
+          <!-- placeholder for later -->
+          <div>
+
+            <!-- Device Header -->
+            <div class="device-info-header"
+              data-testid="device-panel-header">
+              <p><strong>{{deviceData?.deviceName}}</strong></p>
+            </div>
+
+          </div>
+
+      </mat-card-header>
+
+      <br/>
+
+      <!-- Other device information (if any) -->
+      <mat-card-content>
+
+        <!-- Device Image -->
+        <!-- <div class="device-image">
+          <ng-container *ngIf="deviceData">
+            <img src="/assets/images/hololens-2-side-view-shadow.png" width="130px" height="70px"/>
+          </ng-container>
+
+        </div> -->
+
+        <!-- [10/11] MOVED POWER STATUS TO MAT CARD HEADER -->
+        <div class="device-status">
+
+          <!-- Online/Offline/Sleep Status -->
+          <div class="device-status-row">
+
+            <div id="power-status" class="device-status" data-testid="device-panel-power-status">
+
+              <!-- Online/Offline Icons -->
+              <ng-container *ngIf="deviceData?.isOnline; else offlineIcon;">
+
+                <ng-container *ngIf="deviceData?.lowPowerState; else onlineIcon;">
+                  <!-- <span [class.sleepIcon]="deviceData?.isOnline && deviceData?.lowPowerState"></span> -->
+                  <!-- <span class="material-icons" [class.sleepIcon]="deviceData?.isOnline && deviceData?.lowPowerState"> -->
+                  <span id="sleepIcon" class="material-icons material-symbols-outlined" [class.sleepIcon]="deviceData?.isOnline && deviceData?.lowPowerState">
+                    bedtime
+                  </span>
+                </ng-container>
+
+                <ng-template #onlineIcon>
+                  <span [class.onlineIcon]="deviceData?.isOnline"></span>
+                </ng-template>
+
+              </ng-container>
+
+              <ng-template #offlineIcon>
+                <span [class.offlineIcon]="!deviceData?.isOnline"></span>
+              </ng-template>
+
+
+              <!-- Online/Offline Text -->
+              <!-- <ng-container *ngIf="deviceData?.isOnline; else offlineText;">
+
+                <ng-container *ngIf="deviceData?.lowPowerState; else onlineText;">
+                  <span class="status-info-text"><strong> Sleep</strong></span>
+                </ng-container>
+
+                <ng-template #onlineText>
+                  <span class="status-info-text"><strong> Online</strong></span>
+                </ng-template>
+
+              </ng-container>
+
+              <ng-template #offlineText>
+                <span class="status-info-text"><strong> Offline</strong></span>
+              </ng-template> -->
+
+              <!-- <br/> -->
+
+              <!-- <ng-template #sleepText>
+                  <span class="status-info-text"><strong> Sleep</strong></span>
+              </ng-template> -->
+
+            </div>
+
+            <!-- Battery Status -->
+            <div id="battery-status">
+              <span *ngIf="isSmall || isMedium || isLarge || isExtraLarge">
+                <!-- <mat-icon id="battery-icon">battery_full</mat-icon> -->
+
+                <!-- Not Charging Battery Icons -->
+                <ng-container *ngIf="!deviceData?.isCharging">
+
+                  <span *ngIf="deviceData?.battLife === 100" class="material-symbols-outlined">
+                    battery_full
+                  </span>
+                  <span *ngIf="deviceData?.battLife >= 88 && deviceData?.battLife < 100" class="material-symbols-outlined">
+                    battery_6_bar
+                  </span>
+                  <span *ngIf="deviceData?.battLife >= 75 && deviceData?.battLife < 88" class="material-symbols-outlined">
+                    battery_5_bar
+                  </span>
+                  <span *ngIf="deviceData?.battLife >= 62 && deviceData?.battLife < 75" class="material-symbols-outlined">
+                    battery_5_bar
+                  </span>
+                  <span *ngIf="deviceData?.battLife >= 50 && deviceData?.battLife < 62" class="material-symbols-outlined">
+                    battery_4_bar
+                  </span>
+                  <span *ngIf="deviceData?.battLife >= 37 && deviceData?.battLife < 50" class="material-symbols-outlined">
+                    battery_3_bar
+                  </span>
+                  <span *ngIf="deviceData?.battLife >= 25 && deviceData?.battLife < 37" class="material-symbols-outlined">
+                    battery_2_bar
+                  </span>
+                  <span *ngIf="deviceData?.battLife >= 0 && deviceData?.battLife < 25" class="material-symbols-outlined">
+                    battery_alert
+                  </span>
+
+                </ng-container>
+
+                <!-- Charging Battery Icons -->
+                <ng-container *ngIf="deviceData?.isCharging">
+
+                  <span *ngIf="deviceData?.battLife === 100" class="material-symbols-outlined">
+                    battery_full
+                  </span>
+                  <span *ngIf="deviceData?.battLife >= 88 && deviceData?.battLife < 100" class="material-symbols-outlined">
+                    battery_charging_90
+                  </span>
+                  <span *ngIf="deviceData?.battLife >= 75 && deviceData?.battLife < 88" class="material-symbols-outlined">
+                    battery_charging_80
+                  </span>
+                  <span *ngIf="deviceData?.battLife >= 62 && deviceData?.battLife < 75" class="material-symbols-outlined">
+                    battery_charging_80
+                  </span>
+                  <span *ngIf="deviceData?.battLife >= 50 && deviceData?.battLife < 62" class="material-symbols-outlined">
+                    battery_charging_80
+                  </span>
+                  <span *ngIf="deviceData?.battLife >= 37 && deviceData?.battLife < 50" class="material-symbols-outlined">
+                    battery_charging_50
+                  </span>
+                  <span *ngIf="deviceData?.battLife >= 25 && deviceData?.battLife < 37" class="material-symbols-outlined">
+                    battery_charging_30
+                  </span>
+                  <span *ngIf="deviceData?.battLife >= 0 && deviceData?.battLife < 25" class="material-symbols-outlined">
+                    battery_charging_20
+                  </span>
+
+                </ng-container>
+
+
+                <span class="status-info-text" *ngIf="deviceData?.battLife === null ||deviceData?.battLife === undefined"> - </span>
+                <span class="status-info-text">{{deviceData?.battLife}}%</span>
+                <!-- <span class="status-info-text" *ngIf="deviceData?.isCharging">(Charging)</span> -->
+              </span>
+            </div>
+
+          </div>
+
+          <!-- Last Update Status -->
+          <p id="last-updated" *ngIf="isMedium || isLarge || isExtraLarge">
+            <strong>Last Updated:</strong>
+            <span><i>{{deviceData?.lastUpdated}}</i></span>
+          </p>
+
+        </div>
+
+      </mat-card-content>
+
+  </mat-card>
+
+  <!-- Loading Spinner -->
+  <ng-template #isLoading>
+      <div *ngIf="isLoading" class="loading">
+          <mat-spinner class=".loadingSpinner"></mat-spinner>
+      </div>
+  </ng-template>
+
+</ng-container>
+
+

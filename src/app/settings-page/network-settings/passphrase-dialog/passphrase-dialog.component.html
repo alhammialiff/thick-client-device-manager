@@ -1,0 +1,9 @@
+<div class="form-container">
+  <div [formGroup]="passPhraseForm">
+    <p><mat-icon>wifi</mat-icon><strong>{{data}}</strong></p>
+    <p>Enter network security key:</p>
+    <input type="password" formControlName="passPhrase" />
+    <button id="connect"[mat-dialog-close]="capturedKey"><strong>Connect</strong></button>
+    <button id="cancel" (click)="closeDialog()"><strong>Cancel</strong></button>
+  </div>
+</div>

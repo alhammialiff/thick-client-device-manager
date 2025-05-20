@@ -1,0 +1,92 @@
+
+.wifi-network{
+
+  display: flex;
+  flex-direction: row;
+  max-width: 600px;
+  padding: 10px;
+  background-color: #dfdfdf;
+  border: 1px solid #dfdfdf;
+  border-radius: 6px;
+  margin-top: 0;
+  margin-bottom: 5px;
+  font-family: roboto-regular;
+  font-size: 1.1rem;
+
+  .wifi-prop{
+    align-items: center;
+    padding: 5px;
+    border-radius: 6px;
+    // margin-top:10px;
+    // margin-right:10px;
+
+  }
+
+  .wifi-prop-header{
+
+    font-size: 0.8rem;
+
+  }
+
+  .wifi-prop-connected{
+    color:rgb(119, 206, 148);
+    font-size: 0.5rem;
+
+  }
+
+  .wifi-prop-profile-available{
+
+    color:rgb(91, 154, 243);
+    font-size: 0.5rem;
+
+  }
+
+  mat-icon{
+
+    font-size: 1.3rem;
+    margin-top:10px;
+    color: rgb(119, 206, 148);
+  }
+
+  .connect-button{
+    // display: flex;
+    margin-left:auto;
+
+    button{
+
+
+      cursor: pointer;
+      padding: 5px;
+      font-family: "roboto-regular" !important;
+      background-color: #d4d4d4;
+      border: none;
+      border-radius: 5px;
+      margin: 10px 0;
+
+    }
+
+  }
+
+}
+
+.wifi-network:hover{
+
+  background-color: rgb(161, 0, 0);
+  transition: background-color 0.25s ease-in;
+  color: white;
+
+  .connect-button:hover{
+
+    cursor: pointer;
+
+    button:hover{
+
+      background-color: rgb(180, 180, 180);
+      transition: background-color 0.2s ease-in;
+
+    }
+
+  }
+
+}
+

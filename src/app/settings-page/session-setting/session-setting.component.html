@@ -1,0 +1,49 @@
+<div class="form-container">
+
+  <h3>Session</h3>
+  <h4>Backup Session Data</h4>
+<!--
+  <form [formGroup]="sessionSettingsForm">
+
+    <div class="form-control">
+      <label>Device Update Interval</label>
+      <select formControlName="deviceUpdateInterval">
+        <option *ngFor="let rate of deviceUpdateInterval" value="{{rate}}">
+          {{rate}} secs
+        </option>
+      </select>
+    </div>
+
+    <br/>
+
+
+  </form> -->
+  <p><strong>Save backup of Registered HoloLens, Installed Apps and Settings Data into a local file</strong></p>
+
+  <a #backupSessionConfigAnchorElement
+    download>
+  </a>
+
+  <button
+    (click)="onBackupSession()" download>
+    Backup Session Data
+  </button>
+
+  <br/>
+  <br/>
+  <hr>
+
+  <h4>Load Session Data</h4>
+  <p><strong>Upload existing backup of Registered HoloLens, Installed Apps and Settings Data into this session</strong></p>
+
+  <form [formGroup]="loadSessionDataForm">
+
+    <input #loadSessionConfigInputElement type="file" formControlName="sessionFilePath">
+
+    <button
+      (click)="onLoadSession()">
+      Load Session Data
+    </button>
+  </form>
+
+</div>

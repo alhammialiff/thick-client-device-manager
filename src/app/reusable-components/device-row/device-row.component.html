@@ -1,0 +1,63 @@
+  <!-- <table> -->
+    <!-- <tr class="device-list"> -->
+<div @fadeInEntrance
+  class="device-table-grid"
+  [class.flashUpdateBackground]="updateFlash"
+  [class.hideUpdateBackground]="!updateFlash">
+  <div class="col1"><strong>{{hlListIndex}}</strong></div>
+  <div class="col2"><strong>{{hlDeviceName}}</strong></div>
+  <div class="col3">{{hlAddress}}</div>
+  <div class="col4">
+
+    <!-- Online/Offline Icons -->
+    <ng-container *ngIf="deviceData.isOnline; else offlineIcon;">
+
+      <ng-container *ngIf="deviceData.lowPowerState; else onlineIcon;">
+        <!-- <span [class.sleepIcon]="deviceData.isOnline && deviceData.lowPowerState"></span> -->
+        <span class="material-icons"
+                  [class.sleepIcon]="deviceData?.isOnline && deviceData?.lowPowerState">
+                    bedtime
+                  </span>
+      </ng-container>
+
+      <ng-template #onlineIcon>
+        <span [class.onlineIcon]="deviceData.isOnline"></span>
+      </ng-template>
+
+    </ng-container>
+
+    <!-- Online/Offline Text -->
+    <ng-template #offlineIcon>
+      <span [class.offlineIcon]="!deviceData.isOnline"></span>
+    </ng-template>
+
+    <ng-container *ngIf="deviceData.isOnline; else offlineText;">
+
+      <ng-container *ngIf="deviceData.lowPowerState; else onlineText;">
+        <span class="status-info-text"> Sleep</span>
+      </ng-container>
+
+      <ng-template #onlineText>
+        <span class="status-info-text"> Online</span>
+      </ng-template>
+
+    </ng-container>
+
+    <ng-template #offlineText>
+      <span class="status-info-text"> Offline</span>
+    </ng-template>
+
+  </div>
+  <div class="col5">
+    <span class="status-info-text" *ngIf="deviceData?.battLife === null ||deviceData?.battLife === undefined"> - </span>
+    <span class="status-info-text">{{deviceData?.battLife}}% </span>
+    <span class="status-info-text" *ngIf="deviceData.isCharging">(Charging)</span>
+  </div>
+  <div class="col6">{{deviceData.lastUpdated}}</div>
+  <div class="col7">
+    <button [routerLink]="['/started/overview' + '/' + hlID]">Details</button>
+    <button (click)="openDeviceConfigPopUpDialog()">Settings</button>
+  </div>
+</div>
+    <!-- </tr><br> -->
+  <!-- </table> -->

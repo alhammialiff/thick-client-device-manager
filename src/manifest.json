@@ -1,0 +1,24 @@
+{
+  "name": "Basic Auth Automater",
+  "version": "1",
+  "description": "This app automates population of basic authentication fields in chrome authentication pop-up",
+  "manifest_version": 3,
+  "background": {
+    "scripts":[
+      "web-request.js"
+    ]
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": [
+        "content.js"
+      ]
+    }
+  ],
+  "permissions": [
+    "webRequest",
+    "webRequestBlocking"
+  ]
+
+}

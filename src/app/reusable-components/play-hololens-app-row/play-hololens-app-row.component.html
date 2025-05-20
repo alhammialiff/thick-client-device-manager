@@ -1,0 +1,135 @@
+<!-- <ng-container *ngIf="videoStreaming$ | async; else loadingSpinner"> -->
+<ng-container *ngIf="isOnline && !lowPowerState" >
+
+  <div class="component-container">
+
+    <!-- Device Header Info -->
+    <div class="device-header-info">
+
+      <span>{{(videoStreaming$ | async)?.deviceData?.deviceName}}</span>  |
+      <span> {{hostIP? hostIP: ''}}</span>  |
+      <span class="material-symbols-outlined">flash_on</span><span>{{battLife}}%</span>
+      <span> {{isCharging? "("+isCharging+")": ''}}</span>
+
+    </div>
+
+    <!-- Start HL2 App Section -->
+    <div class="start-app-section">
+
+      <!-- App Dropdown -->
+      <div class="app-dropdown-container">
+        <form *ngIf="!isLoading; else loadingSpinner" [formGroup]="appToPlayForm">
+          <div class="app-dropdown-component">
+            <label><strong></strong></label>
+            <select formControlName="packageDisplayName">
+              <option value=""><span id="dropdown-placeholder">Select App to play</span></option>
+              <option *ngFor="let app of installedApps" [value]="app.PackageDisplayName">
+                {{ app.PackageDisplayName }}
+              </option>
+            </select>
+          </div>
+        </form>
+      </div>
+
+      <ng-template #loadingSpinner>
+
+        <div class="loading-spinner-container">
+          <div>
+            <svg class="ring"
+                viewBox="25 25 50 50"
+                stroke-width="5">
+                <circle cx="50" cy="50" r="10" />
+            </svg>
+          </div>
+          <div class="loading-message">
+            Retrieving installed apps...
+          </div>
+        </div>
+      </ng-template>
+
+      <!-- Play Button -->
+      <ng-container *ngIf="!hlAppIsPlaying; else stopAppButton">
+        <div class="start-app-button-container">
+          <button (click)="playApp()" [disabled]="!appToPlaySelected">Launch App</button>
+        </div>
+      </ng-container>
+
+      <div class="start-app-button-container">
+        <button (click)="restartApp()"><span class="material-symbols-outlined">settings_power</span></button>
+      </div>
+
+      <div class="start-app-button-container">
+        <button (click)="openVideoWindow()"><span class="material-symbols-outlined">video_library</span></button>
+      </div>
+
+    </div>
+
+    <ng-template #stopAppButton>
+      <div class="start-app-button-container">
+        <button (click)="stopApp()">Stop App</button>
+      </div>
+    </ng-template>
+
+
+
+    <!-- Video Streamer Section -->
+    <div class="video-streamer-container">
+
+      <!-- poster="/assets/images/vid-not-playing-bg.png" -->
+      <!-- (error)="videoOnErrorHandler($event)" -->
+      <!-- src="{{(videoStreaming$ | async)?.hlVideoStreamingUrl}}" -->
+
+
+      <!-- NOTE UNCOMMENT TO SHOW IN-PAGE VIDEO STREAMER -->
+      <!-- ALSO, UNCOMMENT this.mrcStreamer in .ts -->
+      <!-- <video #mrcStreamer
+        *ngIf="(videoStreaming$ | async)?.hlVideoStreamingUrl"
+        class="video-streamer"
+        controls
+        preload="none"
+        src="{{(videoStreaming$ | async)?.hlVideoStreamingUrl}}"
+        (stalled)="videoStalledHandler($event)"
+        (suspend)="videoSuspendedHandler($event)"
+        (error)="videoOnErrorHandler($event)"
+        (waiting)="videoOnWaitHandler($event)"
+        (progress)="videoResourceProgressMonitor($event)"
+        (playing)="videoOnPlayingHandler($event)"
+        (play)="videoOnPlayHandler($event)"
+        (emptied)="videoOnEmptiedHandler($event)"
+        (loadeddata)="videoOnLoadedDataHandler($event)"
+        (loadstart)="videoOnLoadStartHandler($event)"
+        (loadedmetadata)="videoOnLoadedMetaDataHandler($event)"
+        (ended)="videoOnEndedHandler($event)"
+        (click)="streamVideo()">
+      </video> -->
+
+      <!-- 29/08 STOP HERE: BUFFERING POSTER
+        WE HAVE SPECIFIED PRELOAD: NONE IN BID TO RESOLVE LAGGY START
+      -->
+
+      <!-- <h2>Offline</h2> -->
+
+      <!-- <button (click)="stopHttpVideoStream()">Stop</button> -->
+      <!-- <button (click)="startHttpVideoStream()">Start</button> -->
+      <!-- <video #mrcStreamer2
+        class="video-streamer"
+        preload="none"
+        src="{{url}}"
+        poster="/assets/images/vid-not-playing-bg.png"
+        (suspend)="videoSuspendedHandler($event)"
+        (loadstart)="videoOnLoadStartHandler($event)"
+        (click)="startHttpVideoStream()">
+
+      </video> -->
+
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #loadingSpinner
+  class="loading-spinner-container">
+  <mat-spinner color="accent"></mat-spinner>
+</ng-template>
+<!-- <div [hidden]="!showLoading">
+  <mat-spinner color="warn"></mat-spinner>
+</div> -->

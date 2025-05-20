@@ -1,0 +1,120 @@
+<div class="container">
+
+  <div class="container-header">
+    <h3>Mixed Reality Capture</h3>
+  </div>
+
+  <div *ngIf="!hideImportantNote" class="info-section">
+    <div class="info-header">
+      <div>
+        <span class="material-symbols-outlined">info</span> <span>&nbsp;&nbsp;Important Note</span>
+      </div>
+      <div class="info-close-button-container">
+        <span id="close-button" class="material-symbols-outlined" (click)="toggleHideImportantNote()">close</span>
+      </div>
+    </div>
+    <div class="info-content">
+      <p>HoloLens 2 Apps that are played directly from HoloLens device, or other sources, may not be stopped from within HoloHub.</p>
+      <mat-divider></mat-divider>
+      <ul>
+        <li>To stop such running app, please Restart HoloLens by clicking the '<strong style="color: #d60606;">Restart</strong>' button.</li>
+        <li>Upon restarting, user needs to perform <strong style="color: #d60606;">Windows Login in HoloLens</strong> before being able to start a HoloLens App.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="grid-stream-container">
+
+    <div class="grid-stream-section-header">
+      <h4>HoloLens Grid Stream</h4>
+      <p style="font-size: 1.2rem;">Select Hololens to be played in grid window</p>
+    </div>
+
+    <!-- Available streaming device table here -->
+    <div class="grid-stream-table" [formGroup]="gridStreamDevicesForm">
+
+      <!-- Table Header -->
+      <div class="grid-stream-table-header">
+        <div class="gs-col1">No.</div>
+        <div class="gs-col2">HoloLens</div>
+        <div class="gs-col3">IP</div>
+        <div class="gs-col4">Battery</div>
+        <div class="gs-col5">App Playing</div>
+        <div class="gs-col6">Play Stream</div>
+        <div class="gs-col7">Multi Stream</div>
+      </div>
+
+      <!-- Table row -->
+      <ng-container *ngFor="let device of devicesData;index as i">
+        <div #gridStreamRow
+          [class.grid-stream-table-row]="device.isOnline && !(device.lowPowerState)">
+          <ng-container *ngIf="device.isOnline && !(device.lowPowerState)">
+            <div class="gs-col1"><strong>{{i+1}}</strong></div>
+            <div class="gs-col2"><strong>{{device.deviceName}}</strong></div>
+            <div class="gs-col3">{{device.hostIP}}</div>
+            <div class="gs-col4">{{device.battLife}}%</div>
+            <div #appPlayingColumn class="gs-col5">{{currentPlayingAppArray[i]?.playingApp}}</div>
+            <div class="gs-col6">
+              <button class="stream-solo-button"
+                (click)="startSoloStream(devicesData[i])">
+                <span class="material-symbols-outlined">play_circle</span>
+              </button>
+            </div>
+
+            <!-- Grid Selection Checkbox -->
+            <div class="gs-col7">
+              <input
+                [class.disabledCheckBox]="disabledRemainingUnchecked"
+                [class.enabledCheckBox]="!disabledRemainingUnchecked"
+                type="checkbox"
+                formControlName="{{device.deviceName}}"
+                id="{{device.id}}"
+                name="{{device.deviceName}}"
+                value="{{device.deviceName}}" />
+            </div>
+
+          </ng-container>
+        </div>
+      </ng-container>
+    </div>
+
+
+
+    <!-- Working Form Group of Grid Stream List -->
+      <!-- <form [formGroup]="gridStreamDevicesForm">
+        <ng-container *ngFor="let device of devicesData;index as i">
+          <ng-container *ngIf="device.isOnline && !(device.lowPowerState)">
+            <label for="">
+              <strong>{{device.deviceName}}</strong>
+            </label>
+            <input type="checkbox"
+              formControlName="{{device.deviceName}}"
+              id="{{device.id}}"
+              name="{{device.deviceName}}"
+              value="{{device.deviceName}}" /> <br>
+          </ng-container>
+        </ng-container>
+      </form> -->
+    <div class="stream-multi-button-container">
+      <button class="stream-multi-button"
+        [class.stream-multi-button-enabled]="hasSelection"
+        (click)="startGridStream()"
+        [disabled]="!hasSelection">
+        <strong>Stream Multiple</strong>
+      </button>
+    </div>
+  </div>
+
+
+
+  <div class="video-streamer-dashboard">
+    <div class="grid-stream-section-header">
+      <h4>Play HoloLens App</h4>
+      <p style="font-size: 1.2rem;margin:0px">Select HoloLens App to be played during stream</p>
+    </div>
+    <div>
+      <ng-container insertPlayHololensAppRow></ng-container>
+    </div>
+  </div>
+
+</div>

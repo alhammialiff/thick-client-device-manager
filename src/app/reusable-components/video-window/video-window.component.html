@@ -1,0 +1,84 @@
+<!-- <ng-container *ngIf="notification">
+  <app-toast-message [notification]="notification"></app-toast-message>
+</ng-container> -->
+<html>
+  <head>
+    <title>HoloHub - Video - {{deviceName}}</title>
+
+  </head>
+  <body>
+    <div class="container"
+      (mouseover)="displayHeader()"
+      (mouseout)="hideHeader()">
+
+      <!-- [COMMENTED] OLD VIDEO WINDOW HEADER (TAKES UP SPACE, REPLACED THIS WITH OVERLAY HEADER INSTEAD) -->
+      <!-- <div class="video-window-header" *ngIf="deviceName || hostIP">
+
+        <div class="video-window-logo">
+          <img src="/assets/images/studio-249-logo-shadow-white-bg.png" alt="" width="60px"/>
+        </div>
+
+        <div class="video-window-device-info">
+          {{ deviceName }} / {{ hostIP }} / {{ playingHololensApp }}
+        </div>
+
+        <div class="video-window-controls">
+          <button (click)="reloadVideo()"><mat-icon>refresh</mat-icon></button>
+          <button (click)="closeVideoWindow()"><mat-icon>exit_to_app</mat-icon></button>
+        </div>
+
+        <div class="video-status">
+          <p>{{notification}}</p>
+        </div>
+
+
+      </div> -->
+
+      <!-- <div> -->
+      <!-- Video Streamer -->
+      <div class="video-streamer-container">
+
+        <video #mrcStreamer
+          *ngIf="videoURL"
+          src="{{videoURL}}"
+          class="video-streamer"
+          (playing)="videoOnPlayingHandler($event)"
+          muted="true"
+          (loadeddata)="videoOnLoadedDataHandler($event)"
+          (suspend)="videoSuspendedHandler($event)">
+        </video>
+
+        <div
+          class="video-window-header-overlay"
+          [class.hide-video-window-header-overlay]="!showHeaderFlag"
+          *ngIf="deviceName || hostIP">
+
+          <!-- Logo -->
+          <div class="video-window-logo">
+            <img src="/assets/images/brand-logo.png" alt="" width="50px"/>
+          </div>
+
+          <!-- Video Information-->
+          <div class="video-window-device-info">
+            {{ deviceName }} <span style="color:rgb(218, 4, 4);">/</span> {{ hostIP }} <span style="color:rgb(218, 4, 4);">/</span> {{ playingHololensApp }}
+          </div>
+
+          <!-- Video Information Buttons-->
+          <div class="video-window-controls">
+            <button (click)="reloadVideo()"><span class="material-symbols-outlined">refresh</span></button>
+            <button (click)="closeVideoWindow()"><span class="material-symbols-outlined">exit_to_app</span></button>
+          </div>
+
+          <div class="video-status">
+            <p>{{notification}}</p>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- </div> -->
+    </div>
+  </body>
+</html>
+

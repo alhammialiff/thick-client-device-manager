@@ -1,0 +1,38 @@
+<div class="form-container">
+
+  <h3>General</h3>
+
+  <form [formGroup]="generalSettingsForm">
+
+    <!-- Device Update Interval Form Control -->
+    <div class="form-control">
+      <label>Device Update Interval</label>
+      <select formControlName="deviceUpdateInterval">
+        <option *ngFor="let rate of deviceUpdateInterval" value="{{rate}}">
+          {{rate}} secs
+        </option>
+      </select>
+    </div>
+
+    <!-- Update Flash Form Control -->
+    <div class="form-control">
+      <label for="cars">Update Flash</label>
+      <select formControlName="enableUpdateFlash">
+        <option *ngFor="let bool of enableUpdateFlash" value="{{bool}}">{{bool}}</option>
+      </select>
+    </div>
+
+    <!-- More Form Controls under here -->
+    <!-- Update Flash Form Control -->
+    <div class="form-control">
+      <label for="cars">Device View</label>
+      <select formControlName="deviceView">
+        <option *ngFor="let view of deviceView" value="{{view}}">{{view}}</option>
+      </select>
+    </div>
+    <br/>
+    <button (click)="saveGeneralSettings()">Save Update</button>
+
+  </form>
+
+</div>

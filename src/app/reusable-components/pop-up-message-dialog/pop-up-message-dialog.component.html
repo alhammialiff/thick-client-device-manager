@@ -1,0 +1,16 @@
+<div class="dialog-container">
+  <div>
+    <p><mat-icon>info</mat-icon></p>
+  </div>
+  <div class="dialog-message-content">
+    <span>{{data.message[0]}}</span>
+    <ol *ngIf="data.messageType === 'ordered-list'">
+      <ng-container *ngFor="let listMessage of data.message.slice(1)">
+        <li>{{listMessage}}</li>
+      </ng-container>
+    </ol>
+  </div>
+  <div class="dialog-button">
+    <button id="ok-button" (click)="closeDialog()"><strong>OK</strong></button>
+  </div>
+</div>

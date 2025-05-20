@@ -1,0 +1,15 @@
+<div class="wifi-profile" (mouseenter)="showRemoveButton()" (mouseleave)="hideRemoveButton()">
+
+  <div>
+    <span class="material-symbols-outlined">wifi</span>
+  </div>
+  <div class="wifi-name">
+    <strong>{{wifiProfile.Name}}</strong>
+  </div>
+  <div class="close-button"
+    [hidden]="!showCloseButton"
+    (click)="deleteWiFiProfile()">
+    <span class="material-symbols-outlined">delete</span>
+  </div>
+
+</div>
